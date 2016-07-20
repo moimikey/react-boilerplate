@@ -1,0 +1,14 @@
+*.cache*
+*.css.map*
+*.iws*
+*.log*
+._*
+.DS_Store
+.eslintcache
+.idea/
+.npm/
+.sass-cache/
+benchmark/
+build/
+lib/
+node_modules/

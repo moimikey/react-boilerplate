@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    "ramda",
+    "lodash",
+    "react-hot-loader/babel"
+  ],
+  "presets": [
+    "es2015",
+    "stage-0",
+    "react"
+  ]
+}
