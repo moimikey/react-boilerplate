@@ -1,22 +1,22 @@
-import { AppContainer } from 'react-hot-loader'
 import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
+import { AppContainer } from 'react-hot-loader'
+import { render } from 'react-dom'
+import { Root } from './Root'
 
 const rootEl = document.getElementById('root')
 
-ReactDOM.render(
+render(
   <AppContainer>
-    <App />
+    <Root />
   </AppContainer>,
   rootEl
 )
 
-module.hot && module.hot.accept('./App', () => {
-  const HydratedApp = require('./App').default
-  ReactDOM.render(
+module.hot && module.hot.accept('./Root', () => {
+  const HydratedRoot = require('./Root').Root
+  render(
     <AppContainer>
-       <HydratedApp />
+       <HydratedRoot />
     </AppContainer>,
     rootEl
   )

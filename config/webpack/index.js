@@ -1,4 +1,4 @@
-const path = require('path')
+import * as path from 'path'
 import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import plugins from './plugins'
@@ -53,10 +53,6 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         '.js',
         '.css',
         '.json'
-      ],
-      modules: [
-        path.join(__dirname, 'src/app'),
-        'node_modules'
       ]
     },
     node: {
