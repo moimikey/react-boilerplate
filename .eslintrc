@@ -5,6 +5,8 @@ parser: "babel-eslint"
 parserOptions:
   ecmaFeatures:
     - "jsx"
+  ecmaVersion: 6
+  sourceType: "module"
 rules:
   semi:
     - 2
@@ -24,6 +26,7 @@ env:
   browser: true
   shelljs: true
   commonjs: true
+  shared-node-browser: true
 plugins:
   - "babel"
   - "react"

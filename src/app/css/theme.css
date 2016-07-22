@@ -1,0 +1,8 @@
+:root {
+  --base-theme: {
+    margin: 10px;
+    font-size: 13px;
+    font-family: Oswald, Helvetica Neue, Helvetica, sans-serif;
+    color: #40a070;
+  }
+}

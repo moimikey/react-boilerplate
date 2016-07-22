@@ -11,4 +11,5 @@
 benchmark/
 build/
 lib/
+dist/
 node_modules/

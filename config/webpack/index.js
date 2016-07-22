@@ -3,8 +3,10 @@ import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import plugins from './plugins'
 import loaders from './loaders'
+import postcss from './postcss'
 
 module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) => {
+  const isDev = NODE_ENV === 'development'
   return {
     _: {
       NODE_ENV,
@@ -12,12 +14,16 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
       SERVER_HOST,
       SERVER_PORT
     },
+    ...isDev && {
+      devtool: "#cheap-module-eval-source-map",
+    },
     context: __dirname,
-    devtool: 'eval',
     entry: [
-      'react-hot-loader/patch',
-      `webpack-dev-server/client?http://${SERVER_HOST}:${SERVER_PORT}`,
-      'webpack/hot/only-dev-server',
+      ...isDev && [
+        'react-hot-loader/patch',
+        `webpack-dev-server/client?http://${SERVER_HOST}:${SERVER_PORT}`,
+        'webpack/hot/only-dev-server'
+      ],
       './src/app'
     ],
     output: {
@@ -39,7 +45,29 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
       ]),
       ...plugins[NODE_ENV]
     ],
+    resolve: {
+      extensions: [
+        '',
+        '.js',
+        '.css',
+        '.json'
+      ],
+      modules: [
+        path.join(__dirname, 'src/app'),
+        'node_modules'
+      ]
+    },
+    node: {
+      fs: 'empty',
+      child_process: 'empty'
+    },
     module: {
+      noParse: /\.min\.js/,
+      preLoaders: [{
+        test: /\.js$/,
+        loaders: ['eslint'],
+        include: path.join(__dirname, OPTIONS.srcDir)
+      }],
       loaders: [{
         test: /\.js$/,
         loaders: ['babel'],
@@ -50,6 +78,7 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         include: path.join(__dirname, OPTIONS.srcDir)
       },
       ...loaders[NODE_ENV]]
-    }
+    },
+    postcss
   }
 }

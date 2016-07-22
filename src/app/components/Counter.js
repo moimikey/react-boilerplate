@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import CSS from 'react-css-modules'
+import stylesheet from './Counter.css'
 
+@CSS(stylesheet)
 export default class Counter extends Component {
   constructor(props) {
     super(props)
@@ -22,7 +25,7 @@ export default class Counter extends Component {
 
   render() {
     return (
-      <h2>count: {this.state.counter}</h2>
+      <h2 styleName="Counter">count: {this.state.counter}</h2>
    )
   }
 }

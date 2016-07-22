@@ -19,7 +19,7 @@ new WebpackDevServer(webpack(config), {
     hash: true,
     version: true,
     timings: true,
-    chunks: false,
+    chunks: true,
     chunkModules: false,
     cached: true,
     cachedAssets: true

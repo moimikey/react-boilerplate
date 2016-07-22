@@ -1,12 +1,16 @@
 import React, { PropTypes } from 'react'
+import css from 'react-css-modules'
+import stylesheet from './Layout.css'
 
-export default function Layout({ children }) {
+function Layout({ children }) {
   Layout.propTypes = {
     children: PropTypes.element
   }
   return (
-    <div className="Layout">
+    <div styleName="Layout">
       {children}
     </div>
   )
 }
+
+export default css(stylesheet)(Layout)
