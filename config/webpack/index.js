@@ -1,16 +1,10 @@
-import * as path from 'path'
-import webpack from 'webpack'
+const path = require('path')
 import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import plugins from './plugins'
 import loaders from './loaders'
 
-const NODE_ENV = process.env.NODE_ENV && String(process.env.NODE_ENV).toLowerCase() || 'development'
-const OPTIONS = require(path.join(__dirname, '../env/', NODE_ENV))
-const SERVER_HOST = process.env.DEV_SERVER_HOST || OPTIONS.defaultHost
-const SERVER_PORT = process.env.DEV_SERVER_PORT || OPTIONS.defaultPort
-
-module.exports = __dirname => {
+module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) => {
   return {
     _: {
       NODE_ENV,
@@ -24,7 +18,7 @@ module.exports = __dirname => {
       'react-hot-loader/patch',
       `webpack-dev-server/client?http://${SERVER_HOST}:${SERVER_PORT}`,
       'webpack/hot/only-dev-server',
-      './src/app/index'
+      './src/app'
     ],
     output: {
       path: path.join(__dirname, OPTIONS.destDir),
