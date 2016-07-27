@@ -14,15 +14,12 @@ export default {
   production: [
     {
       test: /\.css$/,
-      loaders: [
+      loader: ExtractTextPlugin.extract(
         'style',
         'css?modules&importLoaders=1&localIdentName=[hash:base64:12]',
         'postcss?pack=production'
-      ]
+      )
     }
-    // {
-    //   test: /\.css$/,
-    //   loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
-    // }
-  ]
+  ],
+  test: []
 }

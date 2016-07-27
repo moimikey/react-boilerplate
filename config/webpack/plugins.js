@@ -4,7 +4,6 @@ export default {
   development: [
     new HotModuleReplacementPlugin()
   ],
-  production: [
-
-  ]
+  production: [],
+  test: []
 }

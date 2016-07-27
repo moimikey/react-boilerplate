@@ -2,7 +2,9 @@ const path = require('path')
 import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import plugins from './plugins'
+import preLoaders from './preloaders'
 import loaders from './loaders'
+import postLoaders from './postloaders'
 import postcss from './postcss'
 
 module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) => {
@@ -67,7 +69,9 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         test: /\.js$/,
         loaders: ['eslint'],
         include: path.join(__dirname, OPTIONS.srcDir)
-      }],
+      },
+      ...preLoaders[NODE_ENV]
+      ],
       loaders: [{
         test: /\.js$/,
         loaders: ['babel'],
@@ -77,7 +81,11 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         loaders: ['json'],
         include: path.join(__dirname, OPTIONS.srcDir)
       },
-      ...loaders[NODE_ENV]]
+      ...loaders[NODE_ENV]
+      ],
+      postLoaders: [
+      ...postLoaders[NODE_ENV]
+      ]
     },
     postcss
   }

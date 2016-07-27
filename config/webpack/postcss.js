@@ -14,25 +14,25 @@ export default webpack => {
           })
         ]
       }),
-      require('postcss-devtools'),
-      require('postcss-utilities'),
-      require('postcss-cssnext')({ browsers: "last 2 versions" }),
-      require('postcss-url'),
-      require('postcss-autoreset'),
-      require('postcss-font-magician'),
+      require('postcss-devtools')(),
+      require('postcss-utilities')(),
+      require('postcss-cssnext')({ browsers: 'last 2 versions' }),
+      require('postcss-url')(),
+      require('postcss-autoreset')(),
+      require('postcss-font-magician')(),
       require('postcss-reporter')({ clearMessages: true }),
-      require('postcss-browser-reporter')
+      require('postcss-browser-reporter')()
     ],
     production: [
       require('postcss-import')({
         addDependencyTo: webpack,
         path: ['node_modules', 'src']
       }),
-      require('postcss-utilities'),
-      require('postcss-cssnext')({ browsers: "last 2 versions" }),
-      require('postcss-url'),
-      require('postcss-autoreset'),
-      require('postcss-font-magician')
+      require('postcss-utilities')(),
+      require('postcss-cssnext')({ browsers: 'last 2 versions' }),
+      require('postcss-url')(),
+      require('postcss-autoreset')(),
+      require('postcss-font-magician')()
     ]
   }
 }
