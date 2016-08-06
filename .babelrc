@@ -1,6 +1,8 @@
 {
   "plugins": [
-    "transform-runtime",
+    ["transform-runtime": {
+      "polyfill": true
+    }],
     "transform-decorators-legacy",
     "ramda",
     "lodash",
@@ -8,6 +10,7 @@
   ],
   "presets": [
     "es2015",
+    "es2016",
     "stage-0",
     "react"
   ]
