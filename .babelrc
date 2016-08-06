@@ -1,6 +1,6 @@
 {
   "plugins": [
-    ["transform-runtime": {
+    ["transform-runtime", {
       "polyfill": true
     }],
     "transform-decorators-legacy",
