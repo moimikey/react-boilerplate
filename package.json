@@ -23,6 +23,7 @@
     "build": "cross-env NODE_ENV=production webpack -p --progress",
     "clean": "rimraf .eslintcache {lib,build}/**/*.{js,log}",
     "dedupe": "npm dedupe",
+    "install:redux": "node bin/install_redux.js",
     "lint": "eslint --cache src",
     "prebuild": "npm-run-all --sequential prune lint clean",
     "prepublish": "npm-run-all --sequential test build",
