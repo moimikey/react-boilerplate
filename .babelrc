@@ -4,6 +4,7 @@
       "polyfill": true
     }],
     "transform-decorators-legacy",
+    "transform-es2015-function-name",
     "ramda",
     "lodash",
     "react-hot-loader/babel"
