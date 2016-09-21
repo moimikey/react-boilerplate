@@ -1,4 +1,4 @@
-@import './css/theme.css';
+@import './Root.css';
 
 .App {
   @apply --base-theme;

@@ -1,7 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes as T } from 'react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 class Counter extends Component {
+  static propTypes = {
+    increment: T.func,
+    count: T.number
+  }
+
   constructor(props) {
     super(props)
     this.tick = props.increment.bind(null, 1)

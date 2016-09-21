@@ -7,11 +7,6 @@ import loaders from './loaders'
 import postLoaders from './postloaders'
 import postcss from './postcss'
 
-const NODE_ENV = process.env.NODE_ENV && String(process.env.NODE_ENV).toLowerCase() || 'development'
-const OPTIONS = require(path.join(__dirname, '../env/', NODE_ENV))
-const SERVER_HOST = process.env.DEV_SERVER_HOST || OPTIONS.defaultHost
-const SERVER_PORT = process.env.DEV_SERVER_PORT || OPTIONS.defaultPort
-
 module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) => {
   const isDev = NODE_ENV === 'development'
   return {
@@ -41,6 +36,7 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
     plugins: [
       new DefinePlugin({ /* always keep as first entry */
         IS_DEV: JSON.stringify(NODE_ENV === 'development'),
+        IS_PROD: JSON.stringify(NODE_ENV === 'production'),
         DEV_SERVER_PORT: JSON.stringify(SERVER_PORT),
         DEV_SERVER_HOST: JSON.stringify(SERVER_HOST),
         APP_PATH: JSON.stringify(path.join(__dirname, 'src/app')),
