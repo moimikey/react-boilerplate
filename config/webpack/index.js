@@ -7,6 +7,11 @@ import loaders from './loaders'
 import postLoaders from './postloaders'
 import postcss from './postcss'
 
+const NODE_ENV = process.env.NODE_ENV && String(process.env.NODE_ENV).toLowerCase() || 'development'
+const OPTIONS = require(path.join(__dirname, '../env/', NODE_ENV))
+const SERVER_HOST = process.env.DEV_SERVER_HOST || OPTIONS.defaultHost
+const SERVER_PORT = process.env.DEV_SERVER_PORT || OPTIONS.defaultPort
+
 module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) => {
   const isDev = NODE_ENV === 'development'
   return {
@@ -26,7 +31,7 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         `webpack-dev-server/client?http://${SERVER_HOST}:${SERVER_PORT}`,
         'webpack/hot/only-dev-server'
       ],
-      './src/app'
+      './src/app/index'
     ],
     output: {
       path: path.join(__dirname, OPTIONS.destDir),
@@ -35,12 +40,13 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
     },
     plugins: [
       new DefinePlugin({ /* always keep as first entry */
-        __devServerPort: JSON.stringify(SERVER_PORT),
-        __devServerHost: JSON.stringify(SERVER_HOST),
-        __appPath: JSON.stringify(path.join(__dirname, 'src/app')),
-        __rootPath: JSON.stringify(__dirname),
-        __env: JSON.stringify(NODE_ENV),
-        __envSettings: JSON.stringify(require(path.join(__dirname, './config/env/', NODE_ENV)))
+        IS_DEV: JSON.stringify(NODE_ENV === 'development'),
+        DEV_SERVER_PORT: JSON.stringify(SERVER_PORT),
+        DEV_SERVER_HOST: JSON.stringify(SERVER_HOST),
+        APP_PATH: JSON.stringify(path.join(__dirname, 'src/app')),
+        ROOT_PATH: JSON.stringify(__dirname),
+        ENV: JSON.stringify(NODE_ENV),
+        ENV_PATH: JSON.stringify(require(path.join(__dirname, './config/env/', NODE_ENV)))
       }),
       new EnvironmentPlugin([
         'NODE_ENV'
@@ -53,7 +59,11 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         '.js',
         '.css',
         '.json'
-      ]
+      ],
+      alias: {
+        components: path.resolve('./src/app/components'),
+        modules: path.resolve('./src/app/modules')
+      }
     },
     node: {
       fs: 'empty',
@@ -80,7 +90,7 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
       ...loaders[NODE_ENV]
       ],
       postLoaders: [
-      ...postLoaders[NODE_ENV]
+        ...postLoaders[NODE_ENV]
       ]
     },
     postcss

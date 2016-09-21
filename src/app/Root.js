@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-// import wire from 'redux-shared-worker/lib/wire'
-// import ConfigureStore from 'shared-worker!./configureStore'
+import configureStore from './configureStore'
 import App from './App'
 
-// const store = wire(new ConfigureStore, { counter: 0 })
-const store = require('./configureStore').default()
+const store = configureStore()
 
 export class Root extends Component {
   render() {

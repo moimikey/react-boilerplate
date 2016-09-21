@@ -1,17 +1,15 @@
+/* globals IS_DEV */
 import { createStore, applyMiddleware, compose } from 'redux'
-// import wire from 'redux-shared-worker/lib/wire.worker'
-import { DevTools } from './components/DevTools'
 import rootReducer from './rootReducer'
-import { logger, promise } from './middleware'
+import middleware from './middleware'
+import { DevTools } from 'components/DevTools'
+const devTools = IS_DEV && global.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
 export default function configureStore() {
-  const store = //wire(
-    createStore(
-      rootReducer,
-      compose(
-        applyMiddleware(logger, promise),
-        global.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
-      )
+  return createStore(
+    rootReducer,
+    compose(
+      applyMiddleware(...middleware),
+      devTools
     )
-  // , false)
-  return store
+  )
 }
