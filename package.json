@@ -22,7 +22,6 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack -p --progress",
     "clean": "rimraf .eslintcache {lib,build}/**/*.{js,log}",
-    "dedupe": "npm dedupe",
     "lint": "eslint --cache src",
     "prebuild": "npm-run-all --sequential prune lint clean",
     "prepublish": "npm-run-all --sequential test build",
@@ -31,8 +30,7 @@
     "start": "cross-env NODE_ENV=development nodemon -w config --exec node server.js",
     "test": "cross-env NODE_ENV=test babel-tap --bail --no-color --reporter=spec src/app/**/*.spec.js",
     "test:dev": "cross-env NODE_ENV=test babel-tap --bail src/app/**/*.spec.js",
-    "test:watch": "nodemon -w src --exec npm run test:dev",
-    "tidy": "npm-run-all --sequential prune dedupe"
+    "test:watch": "nodemon -w src --exec npm run test:dev"
   },
   "devDependencies": {
     "autoprefixer": "6.4.1",
