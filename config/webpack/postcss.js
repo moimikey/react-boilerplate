@@ -18,6 +18,7 @@ export default webpack => {
       require('postcss-utilities')(),
       require('postcss-cssnext')({ browsers: 'last 2 versions' }),
       require('postcss-url')(),
+      require('postcss-discard-duplicates')(),
       require('postcss-autoreset')(),
       require('postcss-font-magician')(),
       require('postcss-reporter')({ clearMessages: true }),
@@ -31,6 +32,7 @@ export default webpack => {
       require('postcss-utilities')(),
       require('postcss-cssnext')({ browsers: 'last 2 versions' }),
       require('postcss-url')(),
+      require('postcss-discard-duplicates')(),
       require('postcss-autoreset')(),
       require('postcss-font-magician')()
     ]

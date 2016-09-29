@@ -1,4 +1,6 @@
 import * as path from 'path'
+import chalk from 'chalk'
+import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import plugins from './plugins'
@@ -47,6 +49,14 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
       new EnvironmentPlugin([
         'NODE_ENV'
       ]),
+      new ProgressBarPlugin({
+        format: `build [:bar] \n` +
+                `${chalk.green.bold(':percent')} (:elapsed seconds)\n` +
+                `>>> :msg`,
+        clear: false,
+        complete: '█',
+        incomplete: '░'
+      }),
       ...plugins[NODE_ENV]
     ],
     resolve: {

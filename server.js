@@ -14,15 +14,15 @@ new WebpackDevServer(webpack(config), {
   hot: true,
   historyApiFallback: true,
   stats: {
-    colors: true,
-    reasons: true,
-    hash: true,
-    version: true,
-    timings: true,
-    chunks: true,
-    chunkModules: false,
     cached: true,
-    cachedAssets: true
+    cachedAssets: true,
+    chunkModules: false,
+    chunks: true,
+    colors: true,
+    hash: true,
+    reasons: true,
+    timings: true,
+    version: true
   }
 }).listen(SERVER_PORT, SERVER_HOST, err => {
   if (err) return log(err)
