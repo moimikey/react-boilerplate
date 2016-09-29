@@ -1,0 +1,22 @@
+@import '../../Root';
+
+.Counter {}
+
+.Counter h2 {
+  @apply --base-fonts;
+  @apply --base-colors;
+  display: block;
+}
+
+.Counter button {
+  @apply --base-fonts;
+  @apply --base-colors;
+  @apply --button-padding;
+  @apply --north-gap;
+  border: 1px solid #40a070;
+
+  &:hover {
+    border-color: yellowgreen;
+    cursor: pointer;
+  }
+}

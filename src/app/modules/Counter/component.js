@@ -1,6 +1,10 @@
 import React, { Component, PropTypes as T } from 'react'
 import { connect } from 'react-redux'
+import CSS from 'react-css-modules'
 import * as actions from './actions'
+import stylesheet from './component.css'
+
+@CSS(stylesheet)
 class Counter extends Component {
   static propTypes = {
     increment: T.func,
@@ -14,7 +18,7 @@ class Counter extends Component {
 
   render() {
     return (
-      <div>
+      <div styleName="Counter">
         <h2>count: {this.props.count}</h2>
         <button onClick={this.tick}>increase</button>
       </div>

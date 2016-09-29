@@ -6,7 +6,7 @@ export default {
       test: /\.css$/,
       loaders: [
         'style?sourceMap',
-        'css?modules&importLoaders=1&localIdentName=[name]--[local]--[hash:base64:8]',
+        'css?modules&importLoaders=1&localIdentName=[local]-[hash:base64:8]',
         'postcss?pack=development'
       ]
     }

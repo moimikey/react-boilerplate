@@ -1,13 +1,10 @@
 import { createAction } from 'redux-actions'
 import { mediaQueryTracker } from 'redux-mediaquery'
 export function mountResponsive(store) {
-  const large = '(min-width: 64.063em)'
-  const medium = '(min-width: 40.063em)'
-  const small = '(max-width: 40.063em)'
+  const large = '(min-width: 64em)'
+  const medium = '(min-width: 40em)'
+  const small = '(max-width: 39.9375em)'
   const tracker = mediaQueryTracker({
-    isMobile: small,
-    isTablet: medium,
-    isDesktop: large,
     isSmall: small,
     isMedium: medium,
     isLarge: large,

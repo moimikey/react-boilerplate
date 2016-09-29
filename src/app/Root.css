@@ -1,8 +1,33 @@
 :root {
+  --gutter: 10px;
+  --padding: 10px;
+
   --base-theme: {
-    margin: 10px;
-    font-size: 13px;
-    font-family: Oswald, Helvetica Neue, Helvetica, sans-serif;
+
+  };
+
+  --base-fonts: {
+    font-family: VT323, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 1.2em;
+  };
+
+  --base-colors: {
     color: #40a070;
-  }
+  };
+
+  --module-padding: {
+    padding: var(--padding);
+  };
+
+  --button-padding: {
+    padding: 4px 8px;
+  };
+
+  --south-gap: {
+    margin-bottom: var(--gutter);
+  };
+
+  --north-gap: {
+    margin-top: var(--gutter);
+  };
 }
