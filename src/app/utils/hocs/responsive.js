@@ -1,4 +1,3 @@
-import { createAction } from 'redux-actions'
 import { mediaQueryTracker } from 'redux-mediaquery'
 export function mountResponsive(store) {
   const large = '(min-width: 64em)'

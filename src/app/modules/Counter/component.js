@@ -1,11 +1,17 @@
 import React, { Component, PropTypes as T } from 'react'
 import { connect } from 'react-redux'
 import CSS from 'react-css-modules'
+import { getCounter } from 'utils/store-queries'
 import * as actions from './actions'
 import stylesheet from './component.css'
-
+@connect(
+  state => ({
+    count: getCounter(state).count
+  }),
+  actions
+)
 @CSS(stylesheet)
-class Counter extends Component {
+export default class Counter extends Component {
   static propTypes = {
     increment: T.func,
     count: T.number
@@ -25,11 +31,3 @@ class Counter extends Component {
     )
   }
 }
-
-const stateToProps = state => {
-  return {
-    count: state.Counter.count
-  }
-}
-
-export default connect(stateToProps, actions)(Counter)

@@ -8,7 +8,6 @@
 * react
 * redux
   * flux standard action
-  * shit
 
 ## scripts (npm run ...)
 * build - **production build**

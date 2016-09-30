@@ -14,7 +14,7 @@ export default function configureStore() {
   )
 
   module.hot && module.hot.accept('./rootReducer', () => {
-    const rootReducer$ = require('./rootReducer').default
+    const rootReducer$ = require('./rootReducer')
     return store.replaceReducer(rootReducer$)
   })
 

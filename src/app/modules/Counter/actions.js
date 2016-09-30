@@ -1,6 +1,7 @@
 import { createActions } from 'redux-actions'
+export const INCREMENT = 'INCREMENT'
 export const { increment } = createActions({
-  INCREMENT: amount => ({ amount })
+  [INCREMENT]: amount => ({ amount })
 })
 
 // export const { increment, decrement } = createActions({

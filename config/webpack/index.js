@@ -19,7 +19,7 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
       SERVER_PORT
     },
     ...isDev && {
-      devtool: "#cheap-module-eval-source-map",
+      devtool: "eval",
     },
     context: __dirname,
     entry: [
@@ -68,12 +68,14 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
       ],
       alias: {
         components: path.resolve('./src/app/components'),
-        modules: path.resolve('./src/app/modules')
+        modules: path.resolve('./src/app/modules'),
+        utils: path.resolve('./src/app/utils')
       }
     },
     node: {
       fs: 'empty',
-      child_process: 'empty'
+      child_process: 'empty',
+      readline: 'empty'
     },
     module: {
       noParse: /\.min\.js/,

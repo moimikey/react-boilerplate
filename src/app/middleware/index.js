@@ -1,8 +1,12 @@
 /* globals IS_DEV, IS_PROD */
-/* eslint no-unused-vars:0 */
+/* eslint no-unused-vars:0, no-console:0 */
 import promiseMiddleware from 'redux-promise'
 import loggerMiddleware from 'redux-logger'
 import analyticsMiddleware from 'redux-analytics'
+
+const middleware = [
+  promiseMiddleware
+]
 
 const logger = loggerMiddleware({
   duration: true
@@ -12,10 +16,6 @@ const analytics = analyticsMiddleware(({ type, payload }, state) => {
   const track = console.log
   track(type, { ...state.analytics, ...payload })
 })
-
-const middleware = [
-  promiseMiddleware
-]
 
 if (IS_PROD) middleware.concat(analytics)
 if (IS_DEV) middleware.unshift(logger)
