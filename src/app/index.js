@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppContainer } from 'react-hot-loader'
 import { render } from 'react-dom'
-import { Root } from './Root'
+import Root from './Root'
 
 const rootEl = document.getElementById('root')
 
@@ -13,7 +13,7 @@ render(
 )
 
 module.hot && module.hot.accept('./Root', () => {
-  const HydratedRoot = require('./Root').Root
+  const HydratedRoot = require('./Root')
   render(
     <AppContainer>
        <HydratedRoot />

@@ -4,7 +4,7 @@ import { mountResponsive } from 'utils/hocs/responsive'
 import configureStore from './configureStore'
 import App from './App'
 const store = mountResponsive(configureStore())
-export class Root extends Component {
+export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
