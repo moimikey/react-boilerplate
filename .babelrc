@@ -3,14 +3,12 @@
     ["transform-runtime", {
       "polyfill": true
     }],
-    "transform-decorators-legacy",
-    "transform-es2015-function-name",
+    "transform-decorators",
     "ramda",
     "react-hot-loader/babel"
   ],
   "presets": [
-    "es2015",
-    "es2016",
+    "latest-minimal",
     "stage-0",
     "react"
   ]
