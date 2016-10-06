@@ -1,3 +1,3 @@
-export * as actions from './actions'
-export component from './component'
+export actions from './actions'
 export reducers from './reducers'
+export component from './component'

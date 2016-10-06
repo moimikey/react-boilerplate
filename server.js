@@ -1,9 +1,13 @@
 /* eslint no-console:0 */
+require('babel-register')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-const config = require('./webpack.config')
 const log = console.log
-const { SERVER_PORT, SERVER_HOST } = config._
+const config = require('./webpack.config.babel')
+const {
+  SERVER_HOST,
+  SERVER_PORT
+} = require('./env')
 
 new WebpackDevServer(webpack(config), {
   // proxy: {
@@ -16,7 +20,7 @@ new WebpackDevServer(webpack(config), {
   stats: {
     cached: true,
     cachedAssets: true,
-    chunkModules: false,
+    chunkModules: true,
     chunks: true,
     colors: true,
     hash: true,

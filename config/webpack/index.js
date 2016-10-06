@@ -3,24 +3,19 @@ import chalk from 'chalk'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import EnvironmentPlugin from 'webpack/lib/EnvironmentPlugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
+import LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin'
 import plugins from './plugins'
-import preLoaders from './preloaders'
 import loaders from './loaders'
-import postLoaders from './postloaders'
 import postcss from './postcss'
-
-module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) => {
+module.exports = ({
+  __dirname,
+  NODE_ENV,
+  SERVER_HOST,
+  SERVER_PORT,
+  OPTIONS
+}) => {
   const isDev = NODE_ENV === 'development'
   return {
-    _: {
-      NODE_ENV,
-      OPTIONS,
-      SERVER_HOST,
-      SERVER_PORT
-    },
-    ...isDev && {
-      devtool: "eval",
-    },
     context: __dirname,
     entry: [
       ...isDev && [
@@ -33,10 +28,13 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
     output: {
       path: path.join(__dirname, OPTIONS.destDir),
       filename: 'bundle.js',
-      publicPath: '/static/'
+      publicPath: '/'
     },
     plugins: [
-      new DefinePlugin({ /* always keep as first entry */
+      new EnvironmentPlugin([
+        'NODE_ENV'
+      ]),
+      new DefinePlugin({
         IS_DEV: JSON.stringify(NODE_ENV === 'development'),
         IS_PROD: JSON.stringify(NODE_ENV === 'production'),
         DEV_SERVER_PORT: JSON.stringify(SERVER_PORT),
@@ -46,9 +44,6 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         ENV: JSON.stringify(NODE_ENV),
         ENV_PATH: JSON.stringify(require(path.join(__dirname, './config/env/', NODE_ENV)))
       }),
-      new EnvironmentPlugin([
-        'NODE_ENV'
-      ]),
       new ProgressBarPlugin({
         format: `build [:bar] \n` +
                 `${chalk.green.bold(':percent')} (:elapsed seconds)\n` +
@@ -57,11 +52,16 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         complete: '█',
         incomplete: '░'
       }),
+      new LoaderOptionsPlugin({
+        options: {
+          postcss,
+          devTool: isDev ? 'eval' : 'source-map'
+        }
+      }),
       ...plugins[NODE_ENV]
     ],
     resolve: {
       extensions: [
-        '',
         '.js',
         '.css',
         '.json'
@@ -79,13 +79,6 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
     },
     module: {
       noParse: /\.min\.js/,
-      preLoaders: [{
-        test: /\.js$/,
-        loaders: ['eslint'],
-        include: path.join(__dirname, OPTIONS.srcDir)
-      },
-      ...preLoaders[NODE_ENV]
-      ],
       loaders: [{
         test: /\.js$/,
         loaders: ['babel'],
@@ -94,13 +87,17 @@ module.exports = ({ __dirname, NODE_ENV, SERVER_HOST, SERVER_PORT, OPTIONS }) =>
         test: /\.json$/,
         loaders: ['json'],
         include: path.join(__dirname, OPTIONS.srcDir)
+      }, {
+        test: /\.ejs$/,
+        loaders: ['ejs'],
+        include: path.join(__dirname, OPTIONS.rootDir)
+      }, {
+        test: /\.html$/,
+        loaders: ['html'],
+        include: path.join(__dirname, OPTIONS.rootDir)
       },
       ...loaders[NODE_ENV]
-      ],
-      postLoaders: [
-        ...postLoaders[NODE_ENV]
       ]
-    },
-    postcss
+    }
   }
 }

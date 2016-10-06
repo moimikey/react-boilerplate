@@ -1,5 +1,4 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-
 export default {
   development: [
     {
@@ -14,11 +13,13 @@ export default {
   production: [
     {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract(
-        'style',
-        'css?modules&importLoaders=1&localIdentName=[hash:base64:12]',
-        'postcss?pack=production'
-      )
+      loader: ExtractTextPlugin.extract({
+        fallbackLoader: 'style',
+        loader: [
+          'css?modules&importLoaders=1&localIdentName=[hash:base64:12]',
+          'postcss?pack=production'
+        ]
+      })
     }
   ],
   test: []

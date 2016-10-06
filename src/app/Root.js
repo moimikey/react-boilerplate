@@ -9,7 +9,9 @@ const store = mountResponsive(configureStore())
 export default class Root extends Component {
   constructor() {
     super()
-    this.state = {rehydrated: false}
+    this.state = {
+      rehydrated: false
+    }
   }
 
   componentWillMount() {

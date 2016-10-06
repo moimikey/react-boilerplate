@@ -9,11 +9,14 @@ const middleware = [
 ]
 
 const logger = loggerMiddleware({
-  duration: true
+  duration: true,
+  // level: {
+  //   prevState: false
+  // }
 })
 
 const analytics = analyticsMiddleware(({ type, payload }, state) => {
-  const track = console.log
+  const track = console.log.bind(console)
   track(type, { ...state.analytics, ...payload })
 })
 

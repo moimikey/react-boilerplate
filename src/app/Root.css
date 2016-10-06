@@ -2,32 +2,33 @@
   --gutter: 10px;
   --padding: 10px;
 
-  --base-theme: {
-
-  };
-
   --base-fonts: {
     font-family: VT323, Helvetica Neue, Helvetica, sans-serif;
     font-size: 1.2em;
-  };
+  }
 
   --base-colors: {
     color: #40a070;
-  };
+  }
+
+  --base-theme: {
+    @apply --base-fonts;
+    @apply --base-colors;
+  }
 
   --module-padding: {
     padding: var(--padding);
-  };
+  }
 
   --button-padding: {
     padding: 4px 8px;
-  };
+  }
 
   --south-gap: {
     margin-bottom: var(--gutter);
-  };
+  }
 
   --north-gap: {
     margin-top: var(--gutter);
-  };
+  }
 }

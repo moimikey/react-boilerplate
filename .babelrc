@@ -1,15 +1,25 @@
 {
+  "presets": [
+    "es2015",
+    "es2016",
+    "es2017",
+    "stage-0",
+    "react"
+  ],
   "plugins": [
     ["transform-runtime", {
       "polyfill": true
     }],
-    "transform-decorators",
     "ramda",
-    "react-hot-loader/babel"
+    "transform-decorators-legacy",
+    "transform-decorators"
   ],
-  "presets": [
-    "latest-minimal",
-    "stage-0",
-    "react"
-  ]
+  "env": {
+    "production": {},
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  }
 }
