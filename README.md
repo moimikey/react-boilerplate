@@ -1,22 +1,140 @@
-# 🦄 react boilerplate [![Build Status][travis-image]][travis-url]
+# 🦄 web app boilerplate [![Build Status][travis-image]][travis-url]
+a straight forward and high functioning web app boilerplate
+
 [![Version][npm-version-image]][npm-version-url] [![License][npm-license-image]][npm-license-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![Deps][npm-deps-image]][npm-deps-url] [![DevDeps][npm-devdeps-image]][npm-devdeps-url]
 
 ## stack
-* react
-* redux
-  * flux standard action (FSA)
 
-## scripts (npm run ...)
+* **server**
+  * **utilities**
+    * chalk
+    * cross-env
+    * nodemon
+    * npm-run-all
+    * rimraf
+
+* **source**
+  * babel
+    * runtime
+    * cli
+    * **plugins**
+      * ramda
+    * **transforms**
+      * decorators
+      * decorators-legacy
+      * runtime
+    * **presets**
+      * es2015
+      * es2016
+      * es2017
+      * stage-0
+      * react
+
+  * **webpack**
+    * dev-server
+    * **plugins**
+      * compression
+      * extract-text
+      * html
+      * progress-bar
+      * visualizer
+    * **loaders**
+      * babel
+      * css
+      * ejs
+      * eslint
+      * file
+      * json
+      * postcss
+      * raw
+      * react-hot
+      * style
+      * url
+
+* **ui**
+  * react
+    * css-modules
+    * dom
+    * helmet
+    * redux (bindings)
+    * router
+    * router-redux
+    * **utilities**
+      * flux-standard-action
+
+  * redux
+    * actions
+    * router
+    * **utilities**
+      * reselect
+    * **middleware**
+      * analytics
+      * devtools
+      * logger
+      * mediaquery
+      * promise
+      * saga
+        * persist
+          * **transforms**
+            * compress
+
+  * **utility**
+    * classnames
+    * cq-prolyfill
+    * halogen
+    * history
+    * isomorphic-fetch
+    * lave
+    * ramda
+    * shortid
+    * typeov
+    * url
+
+* **style**
+  * postcss
+    * autoprefixer
+    * autoreset
+    * browser-reporter
+    * cssnext
+    * devtools
+    * discard-duplicates
+    * font-magician
+    * import
+    * url
+    * utilities
+
+* **quality**
+  * eslint
+    * **plugins**
+      * react
+      * babel
+  * stylelint
+  * tap
+    * babel-tap
+    * ** utilities **
+      * capture-stream
+
+### scripts (npm run ...)
 * build - **production build**
-* clean - **clean built assets**
+* clean - **clean built libs, logs and caches**
+* clean:all - **runs clean scripts and rm's node_modules**
 * lint - **run eslint**
 * prebuild - **run prebuild scripts**
 * prepublish - **run prepublish scripts**
-* shrink - **x**
-* start - **x**
-* test - **x**
-* test:dev - **x**
-* test:watch - **x**
+* shrink - **npm shrinkwrap**
+* start - **start development server**
+* test - **test with immediate exit & stats (single run)**
+* test:dev - **test with immediate exit (single run)**
+* test:watch - **test with watcher (for dev)**
+
+## install
+
+```
+npm install
+```
+
+## license
+MIT
 
 [npm-version-url]: https://www.npmjs.com/package/react-boilerplate
 [npm-version-image]: https://img.shields.io/npm/v/react-boilerplate.svg
