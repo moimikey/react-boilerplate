@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
-import { mountResponsive } from 'utils/hocs/responsive'
+import CSS from 'react-css-modules'
+import { mountResponsive } from 'app/utils/hocs/responsive'
 import configureStore from './configureStore'
-import Loading from 'components/Loading'
+import Loading from 'app/components/Loading'
 import App from './App'
+import stylesheet from './Root.css'
 const store = mountResponsive(configureStore())
+@CSS(stylesheet)
 export default class Root extends Component {
   constructor() {
     super()

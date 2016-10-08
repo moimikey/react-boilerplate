@@ -35,6 +35,18 @@ export default webpack => {
       require('postcss-discard-duplicates')(),
       require('postcss-autoreset')(),
       require('postcss-font-magician')()
-    ]
+    ],
+    test: [
+      require('postcss-import')({
+        addDependencyTo: webpack,
+        path: ['node_modules', 'src']
+      }),
+      require('postcss-utilities')(),
+      require('postcss-cssnext')({browsers: 'last 2 versions'}),
+      require('postcss-url')(),
+      require('postcss-discard-duplicates')(),
+      require('postcss-autoreset')(),
+      require('postcss-font-magician')()
+    ],
   }
 }

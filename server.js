@@ -2,19 +2,17 @@
 require('babel-register')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-const log = console.log
+const log = console.log.bind(console)
 const config = require('./webpack.config.babel')
 const {
   SERVER_HOST,
   SERVER_PORT
 } = require('./env')
-
-new WebpackDevServer(webpack(config), {
+new WebpackDevServer(webpack(config(process.env.NODE_ENV)), {
   // proxy: {
   //   '/api/*': `http://localhost:${apiPort}`,
   //   '/images/*': `http://localhost:${apiPort}`
   // },
-  publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true,
   stats: {

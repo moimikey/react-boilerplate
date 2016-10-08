@@ -1,4 +1,4 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import { extractTextPluginInstance } from "./plugins"
 export default {
   development: [
     {
@@ -13,14 +13,23 @@ export default {
   production: [
     {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
+      loader: extractTextPluginInstance.extract({
         fallbackLoader: 'style',
         loader: [
-          'css?modules&importLoaders=1&localIdentName=[hash:base64:12]',
-          'postcss?pack=production'
+          { loader:'css', query: 'modules&importLoaders=1&localIdentName=[hash:base64:12]' },
+          { loader:'postcss', query: 'pack=production' }
         ]
       })
     }
   ],
-  test: []
+  test: [
+    {
+      test: /\.css$/,
+      loaders: [
+        'style?sourceMap',
+        'css?modules&importLoaders=1&localIdentName=[local]-[hash:base64:8]',
+        'postcss?pack=development'
+      ]
+    }
+  ]
 }
