@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin'
+import NamedModulesPlugin from 'webpack/lib/NamedModulesPlugin'
 import HappyPack from 'happypack'
 import plugins from './plugins'
 import loaders from './loaders'
@@ -23,7 +24,7 @@ module.exports = ({
         `webpack-dev-server/client?http://${SERVER_HOST}:${SERVER_PORT}`,
         'webpack/hot/only-dev-server'
       ],
-      './src/app/index'
+      './src/app'
     ],
     output: {
       path: path.join(__dirname, OPTIONS.destDir),
@@ -65,6 +66,7 @@ module.exports = ({
           postcss
         }
       }),
+      new NamedModulesPlugin(),
       ...plugins[NODE_ENV]
     ],
     resolve: {
