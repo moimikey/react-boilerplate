@@ -113,6 +113,7 @@
     "redux-logger": "2.7.0",
     "redux-mediaquery": "0.9.2",
     "redux-persist": "4.0.0-alpha6",
+    "redux-persist-crosstab": "3.5.2",
     "redux-persist-transform-compress": "4.0.0",
     "redux-promise": "0.5.3",
     "redux-router": "2.1.2",
