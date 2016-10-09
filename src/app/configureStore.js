@@ -7,10 +7,10 @@ import reducers from './reducers'
 import middleware from './middleware'
 // import { DevTools } from 'components/DevTools'
 // const devTools = global.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
-export default function configureStore() {
+export default function configureStore(initialState = Object.create(null)) {
   const store = createStore(
     reducers,
-    Object.create(null),
+    initialState,
     compose(
       applyMiddleware(...middleware),
       autoRehydrate(),
@@ -20,8 +20,7 @@ export default function configureStore() {
   )
 
   module.hot && module.hot.accept('./reducers', () => {
-    const reducers$ = require('./reducers')
-    return store.replaceReducer(reducers$)
+    return store.replaceReducer(require('./reducers').default)
   })
 
   return store
