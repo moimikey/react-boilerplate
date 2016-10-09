@@ -13,3 +13,4 @@ build/
 lib/
 dist/
 node_modules/
+.happypack/

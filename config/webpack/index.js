@@ -3,10 +3,11 @@ import chalk from 'chalk'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin'
+import HappyPack from 'happypack'
 import plugins from './plugins'
 import loaders from './loaders'
 import postcss from './postcss'
-export default ({
+module.exports = ({
   __dirname,
   SERVER_HOST,
   SERVER_PORT,
@@ -29,6 +30,10 @@ export default ({
       filename: 'bundle.js'
     },
     plugins: [
+      new HappyPack({
+        loaders: ['babel'],
+        id: 'js'
+      }),
       new DefinePlugin({
         IS_DEV: JSON.stringify(isDev),
         IS_PROD: JSON.stringify(isProd),
@@ -55,7 +60,7 @@ export default ({
         debug: isDev,
         minimize: !isDev,
         options: {
-          devTool: isDev ? "cheap-module-eval-source-map" : "hidden-source-map",
+          devTool: isDev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
           context: __dirname,
           postcss
         }
@@ -71,9 +76,6 @@ export default ({
         '.html'
       ],
       alias: {
-        components: path.join(__dirname, 'src/app/components'),
-        modules: path.join(__dirname, 'src/app/modules'),
-        utils: path.join(__dirname, 'src/app/utils'),
         app: path.join(__dirname, 'src/app')
       }
     },
@@ -91,7 +93,10 @@ export default ({
       }, {
         test: /\.js$/,
         use: ['babel'],
-        include: path.join(__dirname, OPTIONS.srcDir)
+        include: path.join(__dirname, OPTIONS.srcDir),
+        options: {
+          happy: {id: 'js'}
+        }
       }, {
         test: /\.json$/,
         use: ['json'],

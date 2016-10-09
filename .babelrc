@@ -11,7 +11,10 @@
   "plugins": [
     "ramda",
     "transform-decorators-legacy",
-    "transform-decorators"
+    "transform-decorators",
+    ["transform-runtime", {
+      "polyfill": true
+    }]
   ],
   "env": {
     "development": {

@@ -10,9 +10,8 @@ const middleware = [
 
 const logger = loggerMiddleware({
   duration: true,
-  // level: {
-  //   prevState: false
-  // }
+  collapsed: true,
+  timestamp: true
 })
 
 const analytics = analyticsMiddleware(({ type, payload }, state) => {

@@ -1,4 +1,4 @@
-import { extractTextPluginInstance } from "./plugins"
+import { extractTextPluginInstance } from './plugins'
 export default {
   development: [
     {

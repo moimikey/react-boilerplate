@@ -1,4 +1,4 @@
-// import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
+import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 import DedupePlugin from 'webpack/lib/optimize/DedupePlugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
@@ -17,6 +17,13 @@ export default {
     new VisualizerPlugin()
   ],
   production: [
+    extractTextPluginInstance,
+    new CommonsChunkPlugin({
+      name: 'vendor',
+      children: true,
+      minChunks: 2,
+      async: true,
+    }),
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
@@ -24,13 +31,6 @@ export default {
       threshold: 10240,
       minRatio: 0.8
     }),
-    extractTextPluginInstance,
-    // new CommonsChunkPlugin({
-    //   name: 'vendor',
-    //   children: true,
-    //   minChunks: 2,
-    //   async: true,
-    // }),
     new HtmlTemplatePlugin({
       appMountId: 'root',
       // baseHref: '',

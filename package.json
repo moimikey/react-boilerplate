@@ -58,6 +58,7 @@
     "eslint-plugin-react": "6.3.0",
     "extract-text-webpack-plugin": "izaakschroeder/extract-text-webpack-plugin.git#pass-proper-loader-options",
     "file-loader": "0.9.0",
+    "happypack": "2.2.1",
     "html-webpack-plugin": "2.22.0",
     "ignore-styles": "5.0.1",
     "json-loader": "0.5.4",
