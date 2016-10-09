@@ -70,10 +70,7 @@ module.exports = ({
     resolve: {
       extensions: [
         '.js',
-        '.json',
-        '.css',
-        '.ejs',
-        '.html'
+        '.json'
       ],
       alias: {
         app: path.join(__dirname, 'src/app')

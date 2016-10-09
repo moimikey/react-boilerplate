@@ -24,13 +24,6 @@ export default {
       minChunks: 2,
       async: true,
     }),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.(js|css|html)$/,
-      threshold: 10240,
-      minRatio: 0.8
-    }),
     new HtmlTemplatePlugin({
       appMountId: 'root',
       // baseHref: '',
@@ -61,7 +54,14 @@ export default {
         warnings: true,
         screw_ie8: true
       }
-    })
+    }),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|css|html)$/,
+      threshold: 10240,
+      minRatio: 0
+    }),
   ],
   test: []
 }
