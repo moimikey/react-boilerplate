@@ -1,5 +1,4 @@
 import React, { Component, PropTypes as T } from 'react'
-import crosstabSync from 'redux-persist-crosstab'
 import CSS from 'react-css-modules'
 import { persistStore } from 'redux-persist'
 import Loading from 'app/components/Loading'
@@ -17,13 +16,10 @@ export default class Root extends Component {
     this.state = {
       rehydrated: false
     }
-    this.persistedStore = cb => persistStore.call(this, this.context.store, {}, cb)
-    // allow for multiple browser tab rehydration
-    crosstabSync(this.persistedStore(null))
   }
 
   componentWillMount() {
-    this.persistedStore(() => {
+    persistStore(this.context.store, {}, () => {
       this.setState({ rehydrated: true })
     })
   }
