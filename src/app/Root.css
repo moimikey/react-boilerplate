@@ -2,9 +2,16 @@
   --gutter: 10px;
   --padding: 10px;
 
+  /***
+  excellent fonts:
+    Nixie One | 500
+    Stint Ultra Expanded
+  ***/
+
   --base-fonts: {
-    font-family: VT323, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 1.2em;
+    font-family: "Diplomata SC", Futura, Helvetica Neue, Helvetica, sans-serif;
+    /*font-weight: 400;*/
+    font-size: 1.6em;
   }
 
   --base-colors: {
