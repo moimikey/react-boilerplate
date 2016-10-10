@@ -52,7 +52,7 @@ a straight forward and high functioning web app boilerplate
       * url
 
 * **ui**
-  * react
+  * **react**
     * css-modules
     * dom
     * helmet
@@ -62,7 +62,7 @@ a straight forward and high functioning web app boilerplate
     * **utilities**
       * flux-standard-action
 
-  * redux
+  * **redux**
     * actions
     * router
     * **utilities**
@@ -74,9 +74,9 @@ a straight forward and high functioning web app boilerplate
       * mediaquery
       * promise
       * saga
-        * persist
-          * **transforms**
-            * compress
+      * persist
+        * **transforms**
+          * compress
 
   * **utility**
     * classnames
@@ -111,7 +111,7 @@ a straight forward and high functioning web app boilerplate
   * stylelint
   * tap
     * babel-tap
-    * ** utilities **
+    * **utilities**
       * capture-stream
 
 ### scripts (npm run ...)
