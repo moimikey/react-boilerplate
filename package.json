@@ -53,7 +53,7 @@
     "eslint": "3.7.1",
     "eslint-loader": "1.5.0",
     "eslint-plugin-babel": "3.3.0",
-    "eslint-plugin-react": "6.4.0",
+    "eslint-plugin-react": "6.4.1",
     "extract-text-webpack-plugin": "izaakschroeder/extract-text-webpack-plugin.git#pass-proper-loader-options",
     "file-loader": "0.9.0",
     "happypack": "2.2.1",
