@@ -25,7 +25,7 @@ export default class Counter extends Component {
   render() {
     return (
       <div styleName="Counter">
-        <h2>BANK ${this.props.count}</h2>
+        <h2>TILL ${this.props.count}</h2>
         <button onClick={this.tick}>add ca$h</button>
       </div>
     )
