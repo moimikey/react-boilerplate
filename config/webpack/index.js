@@ -76,7 +76,11 @@ module.exports = ({
       ],
       alias: {
         app: path.join(__dirname, 'src/app')
-      }
+      },
+      modules: [
+        'node_modules',
+        './src'
+      ]
     },
     node: {
       fs: 'empty',
