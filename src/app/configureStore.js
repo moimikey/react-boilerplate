@@ -19,8 +19,14 @@ export default function configureStore(initialState = Object.create(null)) {
     )
   )
 
+  store.asyncReducers = {}
+
   module.hot && module.hot.accept('./reducers', () => {
-    return store.replaceReducer(require('./reducers').default)
+    System.import('./reducers').then(reducerModule => {
+      const createReducers = reducerModule.default
+      const nextReducers = createReducers(store.asyncReducers)
+      store.replaceReducer(nextReducers)
+    })
   })
 
   return store
