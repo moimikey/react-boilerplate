@@ -1,11 +1,10 @@
 import React, { Component, PropTypes as T } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import cx from 'classnames'
 import CSS from 'react-css-modules'
 import { getMediaQueries } from 'app/utils/store-queries'
-import Layout from 'app/components/Layout'
 import Page from 'app/components/Page'
-import * as Counter from 'app/modules/Counter'
 import stylesheet from './App.css'
 @connect(
   state => ({
@@ -15,6 +14,7 @@ import stylesheet from './App.css'
 @CSS(stylesheet)
 export default class App extends Component {
   static propTypes = {
+    children: T.object.isRequired,
     mq$: T.object
   }
 
@@ -32,9 +32,11 @@ export default class App extends Component {
     return (
       <div className={classNames} styleName="App">
         <Page>
-          <Layout>
-            <Counter.component />
-          </Layout>
+          <ul>
+            <li><Link to="/counter">Good Route</Link></li>
+            <li><Link to="/hello-world">Bad Route</Link></li>
+          </ul>
+          {this.props.children}
         </Page>
       </div>
     )

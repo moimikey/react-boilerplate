@@ -2,6 +2,7 @@ import React, { Component, PropTypes as T } from 'react'
 import { connect } from 'react-redux'
 import CSS from 'react-css-modules'
 import { getCounter } from 'app/utils/store-queries'
+import Layout from 'app/components/Layout'
 import * as actions from './actions'
 import stylesheet from './component.css'
 @connect(
@@ -24,10 +25,12 @@ export default class Counter extends Component {
 
   render() {
     return (
-      <div styleName="Counter">
-        <h2>TILL ${this.props.count}</h2>
-        <button onClick={this.tick}>add ca$h</button>
-      </div>
+      <Layout>
+        <div styleName="Counter">
+          <h2>BANK ${this.props.count}</h2>
+          <button onClick={this.tick}>add cash</button>
+        </div>
+      </Layout>
     )
   }
 }

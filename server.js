@@ -13,6 +13,7 @@ new WebpackDevServer(webpack(config(process.env.NODE_ENV)), {
   //   '/api/*': `http://localhost:${apiPort}`,
   //   '/images/*': `http://localhost:${apiPort}`
   // },
+  headers: {'Access-Control-Allow-Origin': '*'},
   hot: true,
   historyApiFallback: true,
   stats: {

@@ -1,5 +1,11 @@
-@import './Root.css';
+@import "./theme.css";
 
 .App {
   position: relative;
+}
+
+.App ul li a {
+  @apply --base-theme;
+  font-family: "Roboto", Helvetica Neue, Helvetica, sans-serif;
+  font-size: 1em;
 }
