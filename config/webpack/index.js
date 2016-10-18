@@ -36,8 +36,8 @@ module.exports = ({
         id: 'js'
       }),
       new DefinePlugin({
-        IS_DEV: JSON.stringify(isDev),
-        IS_PROD: JSON.stringify(isProd),
+        __DEVELOPMENT__: JSON.stringify(isDev),
+        __PRODUCTION__: JSON.stringify(isProd),
         ...isDev && { DEV_SERVER_PORT: JSON.stringify(SERVER_PORT) },
         ...isDev && { DEV_SERVER_HOST: JSON.stringify(SERVER_HOST) },
         APP_PATH: JSON.stringify(path.join(__dirname, 'src/app')),
