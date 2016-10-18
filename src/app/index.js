@@ -1,47 +1,55 @@
 /* eslint no-console:0 */
 import React from 'react'
-import crosstabSync from 'redux-persist-crosstab'
-import createExpirationTransform from 'redux-persist-transform-expire'
+import { render, unmountComponentAtNode } from 'react-dom'
 import { Provider } from 'react-redux'
+import { Router, browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 import { persistStore } from 'redux-persist'
 import { AppContainer } from 'react-hot-loader'
-import { render } from 'react-dom'
+import crosstabSync from 'redux-persist-crosstab'
+import createExpirationTransform from 'redux-persist-transform-expire'
 import { mountResponsive } from 'app/utils/hocs/responsive'
+
+import routes from './routes'
 import configureStore from './configureStore'
-import Root from './Root'
+
 import Loading from 'app/components/Loading'
 
-const store = mountResponsive(configureStore())
 const rootEl = document.getElementById('root')
+const store = mountResponsive(configureStore(browserHistory))
+const history = syncHistoryWithStore(browserHistory, store)
 
-crosstabSync(persistStore(store, {
-  transforms: [
-    createExpirationTransform({
-      expireKey: 'customExpiresAt'
-    })
-  ]
-}, () => {
-  console.log('[WPS] Syncing localStorage...')
-  render(
-    <Provider store={store} key="provider">
-      <AppContainer>
-        <Root />
-      </AppContainer>
-    </Provider>,
-    rootEl
-  )
-}))
+let getRoutes = routes
+let start = () => {
+  render(<Loading />, rootEl)
 
-render(<Loading />, rootEl)
+  crosstabSync(persistStore(store, {
+    transforms: [
+      createExpirationTransform({
+        expireKey: 'customExpiresAt'
+      })
+    ]
+  }, () => {
+    console.log('[WPS] Syncing localStorage...')
+    render(
+      <Provider store={store} key="provider">
+        <AppContainer>
+          <Router history={history}>
+            {getRoutes(store)}
+          </Router>
+        </AppContainer>
+      </Provider>,
+      rootEl
+    )
+  }))
+}
 
-module.hot && module.hot.accept('./Root', () => {
-  const Root$ = require('./Root').default
-  render(
-    <Provider store={store} key="provider">
-      <AppContainer>
-        <Root$ />
-      </AppContainer>
-    </Provider>,
-    rootEl
-  )
-})
+module.hot && module.hot.accept('./routes', () =>
+  require('set-immediate-shim')(() => {
+    getRoutes = require('./routes').default
+    unmountComponentAtNode(rootEl)
+    start()
+  })
+)
+
+start()

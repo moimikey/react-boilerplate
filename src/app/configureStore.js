@@ -1,33 +1,41 @@
-// /* globals IS_DEV */
+/* globals IS_DEV */
 import { createStore, applyMiddleware, compose } from 'redux'
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom'
 import { autoRehydrate } from 'redux-persist'
+import { routerMiddleware } from 'react-router-redux'
 import { batchedSubscribe } from 'redux-batched-subscribe'
-import reducers from './reducers'
 import middleware from './middleware'
-// import { DevTools } from 'components/DevTools'
-// const devTools = global.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
-export default function configureStore(initialState = Object.create(null)) {
-  const store = createStore(
-    reducers,
-    initialState,
-    compose(
-      applyMiddleware(...middleware),
-      autoRehydrate(),
+import { DevTools } from 'app/components/DevTools'
+const devTools = global.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
+export default function configureStore(history) {
+  let finalCreateStore
+
+  if (IS_DEV) {
+    const { persistState } = require('redux-devtools')
+    finalCreateStore = compose(
+      applyMiddleware(...middleware, routerMiddleware(history)),
+      persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
       batchedSubscribe(batchedUpdates),
-      // IS_DEV && devTools // doesnt play nice with hydrate...
-    )
+      autoRehydrate(),
+      devTools
+    )(createStore)
+  } else {
+    finalCreateStore = compose(
+      applyMiddleware(...middleware, routerMiddleware(history)),
+      batchedSubscribe(batchedUpdates),
+      autoRehydrate(),
+    )(createStore)
+  }
+
+  const reducers = require('./reducers').default
+  const store = finalCreateStore(
+    reducers,
+    Object.create(null)
   )
 
-  store.asyncReducers = {}
-
-  module.hot && module.hot.accept('./reducers', () => {
-    System.import('./reducers').then(reducerModule => {
-      const createReducers = reducerModule.default
-      const nextReducers = createReducers(store.asyncReducers)
-      store.replaceReducer(nextReducers)
-    })
-  })
+  module.hot &&
+    module.hot.accept('./reducers', () =>
+      store.replaceReducer(require('./reducers').default))
 
   return store
 }

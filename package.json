@@ -106,6 +106,7 @@
     "redux": "3.6.0",
     "redux-actions": "0.12.0",
     "redux-analytics": "0.3.1",
+    "redux-async-connect": "1.0.0-rc4",
     "redux-batched-subscribe": "0.1.6",
     "redux-devtools": "3.3.1",
     "redux-devtools-dock-monitor": "1.1.1",
@@ -120,6 +121,7 @@
     "redux-router": "2.1.2",
     "redux-saga": "0.12.0",
     "reselect": "2.5.4",
+    "set-immediate-shim": "1.0.1",
     "shortid": "2.2.6",
     "typeov": "1.2.4",
     "url": "0.11.0"
