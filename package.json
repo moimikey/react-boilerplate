@@ -22,7 +22,6 @@
     "clean:all": "npm-run-all --sequential clean && rimraf node_modules",
     "lint": "eslint --cache src",
     "prebuild": "npm-run-all --sequential lint clean",
-    "prepublish": "npm-run-all --sequential test build",
     "start": "cross-env NODE_ENV=development nodemon -w config --exec node server.js",
     "test": "cross-env NODE_PATH=./src NODE_ENV=test babel-tap --bail --no-color --reporter=spec src/**/*.spec.js",
     "test:dev": "cross-env NODE_PATH=./src NODE_ENV=test babel-tap src/**/*.spec.js",
