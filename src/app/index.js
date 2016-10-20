@@ -25,6 +25,7 @@ let start = () => {
   render(<Loading />, rootEl)
 
   crosstabSync(persistStore(store, {
+    keyPrefix: 'deadbeef:',
     transforms: [
       createExpirationTransform({
         expireKey: 'customExpiresAt'
