@@ -40,7 +40,16 @@
   "modules": true,
   "root": true,
   "globals": {
-    "param": true,
-    "returns": true
+    "__DEVELOPMENT__": true,
+    "__PRODUCTION__": true,
+    "APP_PATH": true,
+    "DEV_SERVER_PORT": true,
+    "DEV_SERVER_HOST": true,
+    "ENV": true,
+    "ENV_PATH": true,
+    "NODE_ENV": true,
+    "ROOT_PATH": true,
+    "SERVER_PORT": true,
+    "SERVER_HOST": true
   }
 }

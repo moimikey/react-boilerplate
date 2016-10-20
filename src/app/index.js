@@ -8,6 +8,7 @@ import { persistStore } from 'redux-persist'
 import { AppContainer } from 'react-hot-loader'
 import crosstabSync from 'redux-persist-crosstab'
 import createExpirationTransform from 'redux-persist-transform-expire'
+import localforage from 'localforage'
 import { mountResponsive } from 'app/utils/hocs/responsive'
 
 import routes from './routes'
@@ -28,6 +29,10 @@ let start = () => {
       createExpirationTransform({
         expireKey: 'customExpiresAt'
       })
+    ],
+    storage: localforage,
+    blacklist: [
+      'routing'
     ]
   }, () => {
     console.log('[WPS] Syncing localStorage...')

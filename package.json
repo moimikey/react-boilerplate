@@ -92,6 +92,7 @@
     "history": "4.3.0",
     "isomorphic-fetch": "2.2.1",
     "lave": "1.1.10",
+    "localforage": "1.4.3",
     "ramda": "0.22.1",
     "react": "15.3.2",
     "react-css-modules": "3.7.10",

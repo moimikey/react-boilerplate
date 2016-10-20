@@ -1,4 +1,3 @@
-/* globals IS_DEV */
 import { createStore, applyMiddleware, compose } from 'redux'
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom'
 import { autoRehydrate } from 'redux-persist'
@@ -10,7 +9,7 @@ const devTools = global.devToolsExtension ? global.devToolsExtension() : DevTool
 export default function configureStore(history) {
   let finalCreateStore
 
-  if (IS_DEV) {
+  if (__DEVELOPMENT__) {
     const { persistState } = require('redux-devtools')
     finalCreateStore = compose(
       applyMiddleware(...middleware, routerMiddleware(history)),
