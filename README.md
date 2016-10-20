@@ -1,9 +1,9 @@
-# 🦄 web app boilerplate [![Build Status][travis-image]][travis-url]
+# ⚛ web app boilerplate [![Build Status][travis-image]][travis-url]
 a straight forward and high functioning web app boilerplate
 
 [![Version][npm-version-image]][npm-version-url] [![License][npm-license-image]][npm-license-url] [![Downloads][npm-downloads-image]][npm-downloads-url] [![Deps][npm-deps-image]][npm-deps-url] [![DevDeps][npm-devdeps-image]][npm-devdeps-url]
 
-## stack
+## Stack
 
 * **server**
   * **utilities**
@@ -114,26 +114,23 @@ a straight forward and high functioning web app boilerplate
     * **utilities**
       * capture-stream
 
-### scripts (npm run ...)
+## Scripts
 * build - **production build**
 * clean - **clean built libs, logs and caches**
 * clean:all - **runs clean scripts and rm's node_modules**
 * lint - **run eslint**
 * prebuild - **run prebuild scripts**
-* prepublish - **run prepublish scripts**
-* shrink - **npm shrinkwrap**
 * start - **start development server**
 * test - **test with immediate exit & stats (single run)**
 * test:dev - **test with immediate exit (single run)**
 * test:watch - **test with watcher (for dev)**
 
-## install
-
+## Install
 ```
-npm install
+yarn install || npm install
 ```
 
-## license
+## License
 MIT
 
 [npm-version-url]: https://www.npmjs.com/package/react-boilerplate
