@@ -23,7 +23,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { mq$ } = this.props
+    const { mq$, children } = this.props
     const classNames = cx({
       'mq-sm': mq$.isSmall,
       'mq-md': mq$.isMedium,
@@ -32,11 +32,15 @@ export default class App extends Component {
     return (
       <div className={classNames} styleName="App">
         <Page>
-          <ul>
-            <li><Link to="/counter">Good Route</Link></li>
-            <li><Link to="/hello-world">Bad Route</Link></li>
-          </ul>
-          {this.props.children}
+          <section styleName="App__Menu">
+            <ul>
+              <li><Link to="/counter">Good Route</Link></li>
+              <li><Link to="/hello-world">Bad Route</Link></li>
+            </ul>
+          </section>
+          <section styleName="App__Content">
+            {children}
+          </section>
         </Page>
       </div>
     )

@@ -1,15 +1,16 @@
 /* eslint-disable */
 import React from 'react'
 import { IndexRoute, Route } from 'react-router'
+import generateAsyncRoutes from 'app/utils/generateAsyncRoutes'
 import App from './App'
-import * as Counter from './modules/Counter'
-import * as FourOhFour from './modules/FourOhFour'
+import pages from './pages'
 export default store => {
+  const { Home, Counter, FourOhFour } = generateAsyncRoutes(pages)
   return (
     <Route path="/" component={App}>
-      <IndexRoute component={Counter.component} />
-      <Route path="counter" component={Counter.component} />
-      <Route path="*" component={FourOhFour.component} />
+      <IndexRoute component={Home} />
+      <Route path="counter" component={Counter} />
+      <Route path="*" component={FourOhFour} />
     </Route>
   )
 }

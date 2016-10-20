@@ -39,3 +39,7 @@
     margin-top: var(--gutter);
   }
 }
+
+body {
+  overflow-wrap: break-word;
+}

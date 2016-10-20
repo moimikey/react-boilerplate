@@ -33,7 +33,13 @@ module.exports = ({
     plugins: [
       new HappyPack({
         loaders: ['babel'],
-        id: 'js'
+        id: 'js',
+        threads: 5
+      }),
+      new HappyPack({
+        loaders: require('./loaders').default.development[0].loaders,
+        id: 'css',
+        threads: 5
       }),
       new DefinePlugin({
         __DEVELOPMENT__: JSON.stringify(isDev),
