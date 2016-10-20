@@ -10,4 +10,6 @@ before_install:
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
   - sudo update-alternatives --set gcc /usr/bin/gcc-5
   - npm -g install yarn
-  - alias npm=yarn
+install:
+  - yarn install
+  - npm run test
