@@ -6,6 +6,8 @@ cache:
   directories:
   - node_modules
 before_install:
+  - npm -g install yarn
+  - alias npm="yarn"
   - sudo apt-get install python-software-properties
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update
