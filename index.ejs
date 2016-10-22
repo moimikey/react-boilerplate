@@ -6,6 +6,10 @@
 >
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <% if (htmlWebpackPlugin.options.mobile) { %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <% } %>
   <% if (htmlWebpackPlugin.options.meta) { %>
     <% for (var key in htmlWebpackPlugin.options.meta) { %>
       <meta name="<%= key %>" content="<%= htmlWebpackPlugin.options.meta[key] %>">
@@ -14,9 +18,6 @@
   <title><%= htmlWebpackPlugin.options.title || 'App' %></title>
   <% if (htmlWebpackPlugin.files.favicon) { %>
     <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon %>">
-  <% } %>
-  <% if (htmlWebpackPlugin.options.mobile) { %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
   <% } %>
   <% if (htmlWebpackPlugin.options.links) { %>
     <% for(var link of htmlWebpackPlugin.options.links) { %>
@@ -40,13 +41,14 @@
 </head>
 <body>
 <% if (htmlWebpackPlugin.options.unsupportedBrowser) { %>
-  <style>.unsupported-browser { display: none }</style>
+  <!--[if lte IE 9]>
   <div class="unsupported-browser">
     Sorry, your browser is not supported. Please upgrade to
     the latest version or switch your browser to use this site.
     See <a href="http://outdatedbrowser.com/">outdatedbrowser.com</a>
     for options.
   </div>
+  <![endif]-->
 <% } %>
 <% if (htmlWebpackPlugin.options.appMountId) { %>
   <div id="<%= htmlWebpackPlugin.options.appMountId %>"></div>
