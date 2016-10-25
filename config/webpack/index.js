@@ -34,12 +34,12 @@ module.exports = ({
       new HappyPack({
         loaders: ['babel'],
         id: 'js',
-        threads: 5
+        threads: 3
       }),
       new HappyPack({
-        loaders: require('./loaders').default.development[0].loaders,
+        loaders: require('./loaders').default[env][0].loaders,
         id: 'css',
-        threads: 5
+        threads: 3
       }),
       new DefinePlugin({
         __DEVELOPMENT__: JSON.stringify(isDev),
@@ -85,7 +85,7 @@ module.exports = ({
       },
       modules: [
         'node_modules',
-        './src'
+        'src'
       ]
     },
     node: {
@@ -118,6 +118,12 @@ module.exports = ({
         test: /\.html$/,
         use: ['html'],
         include: path.join(__dirname, OPTIONS.rootDir)
+      }, {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: ['url?limit=10000&mimetype=application/font-woff']
+      }, {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: ['file']
       },
       ...loaders[NODE_ENV]
       ]

@@ -1,45 +1,18 @@
 :root {
+  --blue: blue;
+  --red: red;
   --gutter: 10px;
   --padding: 10px;
-
-  /***
-  excellent fonts:
-    Nixie One | 500
-    Stint Ultra Expanded
-  ***/
-
-  --base-fonts: {
-    font-family: "Diplomata SC", Helvetica Neue, Helvetica, sans-serif;
-    /*font-weight: 400;*/
-    font-size: 1.6em;
-  }
-
-  --base-colors: {
-    color: #40a070;
-  }
-
-  --base-theme: {
-    @apply --base-fonts;
-    @apply --base-colors;
-  }
-
   --module-padding: {
     padding: var(--padding);
   }
-
   --button-padding: {
     padding: 4px 8px;
   }
-
   --south-gap: {
     margin-bottom: var(--gutter);
   }
-
   --north-gap: {
     margin-top: var(--gutter);
   }
-}
-
-body {
-  overflow-wrap: break-word;
 }

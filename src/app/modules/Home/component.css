@@ -1,7 +1,5 @@
 @import "../../theme.css";
 
 .Home {
-  @apply --base-theme;
-  color: popColor();
-  font-family: "Lobster", "Helvetica Neue", Helvetica, sans-serif;
+
 }

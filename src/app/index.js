@@ -10,6 +10,7 @@ import crosstabSync from 'redux-persist-crosstab'
 import createExpirationTransform from 'redux-persist-transform-expire'
 import localforage from 'localforage'
 import { mountResponsive } from 'app/utils/hocs/responsive'
+import getClientBrowserInfo from 'app/utils/getClientBrowserInfo'
 
 import routes from './routes'
 import configureStore from './configureStore'
@@ -21,6 +22,16 @@ const store = mountResponsive(configureStore(browserHistory))
 const history = syncHistoryWithStore(browserHistory, store)
 
 let getRoutes = routes
+
+const beforeStart = () => {
+  const client = getClientBrowserInfo()
+  __DEVELOPMENT__ && require('react-a11y')(React, {
+    throw: true,
+    includeSrcNode: true,
+    device: [client.isMobile ? 'mobile' : 'desktop']
+  })
+}
+
 let start = () => {
   render(<Loading />, rootEl)
 
@@ -58,4 +69,5 @@ module.hot && module.hot.accept('./routes', () =>
   })
 )
 
+beforeStart()
 start()

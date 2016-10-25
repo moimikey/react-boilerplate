@@ -1,8 +1,8 @@
 import React from 'react'
-import Loader from 'halogen/BeatLoader'
-import colors from 'app/utils/colors'
+import { Loader } from 'react-loaders'
+import './Loading.css'
 export default function Loading() {
   return (
-    <Loader color={colors.popColor()} size="16px" margin="4px"/>
+    <Loader type="ball-beat" active />
   )
 }

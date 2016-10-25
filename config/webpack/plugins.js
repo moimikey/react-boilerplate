@@ -1,4 +1,4 @@
-import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
+// import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 import DedupePlugin from 'webpack/lib/optimize/DedupePlugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
@@ -6,6 +6,29 @@ import HotModuleReplacementPlugin from 'webpack/lib/HotModuleReplacementPlugin'
 import HtmlTemplatePlugin from 'html-webpack-plugin'
 import UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin'
 import VisualizerPlugin from 'webpack-visualizer-plugin'
+import NotifierPlugin from './plugins/TestPlugin'
+const sharedPlugins = [
+  new HtmlTemplatePlugin({
+    appMountId: 'root',
+    // googleAnalytics: { trackingId: null, pageViewOnLoad: null },
+    hash: true,
+    inject: false,
+    meta: {
+      description: 'Something something darkside.'
+    },
+    minify: {
+      collapseWhitespace: true,
+      removeComments: true,
+      removeRedundantAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true
+    },
+    mobile: true,
+    template: '!!ejs!./index.ejs',
+    unsupportedBrowser: true,
+    window: {},
+  })
+]
 export const extractTextPluginInstance = new ExtractTextPlugin({
   disable: false,
   allChunks: true,
@@ -13,38 +36,20 @@ export const extractTextPluginInstance = new ExtractTextPlugin({
 })
 export default {
   development: [
+    ...sharedPlugins,
     new HotModuleReplacementPlugin(),
-    new VisualizerPlugin()
+    new VisualizerPlugin(),
+    new NotifierPlugin()
   ],
   production: [
+    ...sharedPlugins,
     extractTextPluginInstance,
-    new CommonsChunkPlugin({
-      name: 'vendor',
-      children: true,
-      minChunks: 2,
-      async: true,
-    }),
-    new HtmlTemplatePlugin({
-      appMountId: 'root',
-      // baseHref: '',
-      // googleAnalytics: { trackingId: null, pageViewOnLoad: null },
-      hash: true,
-      inject: false,
-      // links: [],
-      // meta: [],
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true
-      },
-      mobile: true,
-      // scripts: [],
-      template: '!!ejs!./index.ejs',
-      unsupportedBrowser: true,
-      window: {},
-    }),
+    // new CommonsChunkPlugin({
+    //   name: 'vendor',
+    //   children: true,
+    //   minChunks: 2,
+    //   async: true,
+    // }),
     new DedupePlugin(),
     new UglifyJsPlugin({
       sourceMap: true,
@@ -61,7 +66,7 @@ export default {
       test: /\.(js|css|html)$/,
       threshold: 10240,
       minRatio: 0
-    }),
+    })
   ],
   test: []
 }

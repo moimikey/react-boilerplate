@@ -19,7 +19,7 @@ new WebpackDevServer(webpack(config(process.env.NODE_ENV)), {
   stats: {
     cached: true,
     cachedAssets: true,
-    chunkModules: true,
+    chunkModules: false,
     chunks: true,
     colors: true,
     hash: true,

@@ -27,8 +27,8 @@ export default class Counter extends Component {
     return (
       <Layout>
         <div styleName="Counter">
-          <h2>BANK ${this.props.count}</h2>
-          <button onClick={this.tick}>add cash</button>
+          <h2 styleName="Counter-title">BANK ${this.props.count}</h2>
+          <button styleName="Counter-increase" onClick={this.tick}>add cash</button>
         </div>
       </Layout>
     )

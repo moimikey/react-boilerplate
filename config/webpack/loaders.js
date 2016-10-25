@@ -1,14 +1,17 @@
 import { extractTextPluginInstance } from './plugins'
+const sharedLoaders = [
+  {
+    test: /\.css$/,
+    loaders: [
+      'style?sourceMap',
+      'css?modules&importLoaders=1&localIdentName=[local]-[hash:base64:8]',
+      'postcss?pack=development&sourceMap=inline'
+    ]
+  }
+]
 export default {
   development: [
-    {
-      test: /\.css$/,
-      loaders: [
-        'style?sourceMap',
-        'css?modules&importLoaders=1&localIdentName=[local]-[hash:base64:8]',
-        'postcss?pack=development'
-      ]
-    }
+    ...sharedLoaders
   ],
   production: [
     {
@@ -23,13 +26,6 @@ export default {
     }
   ],
   test: [
-    {
-      test: /\.css$/,
-      loaders: [
-        'style?sourceMap',
-        'css?modules&importLoaders=1&localIdentName=[local]-[hash:base64:8]',
-        'postcss?pack=development'
-      ]
-    }
+    ...sharedLoaders
   ]
 }

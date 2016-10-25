@@ -5,114 +5,12 @@ a straight forward and high functioning web app boilerplate
 
 ## Stack
 
-* **server**
-  * **utilities**
-    * chalk
-    * cross-env
-    * nodemon
-    * npm-run-all
-    * rimraf
+### Frontend
+* react
+* redux w/ routing & async actions
 
-* **source**
-  * babel
-    * runtime
-    * cli
-    * **plugins**
-      * ramda
-    * **transforms**
-      * decorators
-      * decorators-legacy
-      * runtime
-    * **presets**
-      * es2015
-      * es2016
-      * es2017
-      * stage-0
-      * react
-
-  * **webpack**
-    * dev-server
-    * **plugins**
-      * compression
-      * extract-text
-      * html
-      * progress-bar
-      * visualizer
-    * **loaders**
-      * babel
-      * css
-      * ejs
-      * eslint
-      * file
-      * json
-      * postcss
-      * raw
-      * react-hot
-      * style
-      * url
-
-* **ui**
-  * **react**
-    * css-modules
-    * dom
-    * helmet
-    * redux (bindings)
-    * router
-    * router-redux
-    * **utilities**
-      * flux-standard-action
-
-  * **redux**
-    * actions
-    * router
-    * **utilities**
-      * reselect
-    * **middleware**
-      * analytics
-      * devtools
-      * logger
-      * mediaquery
-      * promise
-      * saga
-      * persist
-        * **transforms**
-          * compress
-
-  * **utility**
-    * classnames
-    * cq-prolyfill
-    * halogen
-    * history
-    * isomorphic-fetch
-    * lave
-    * ramda
-    * shortid
-    * typeov
-    * url
-
-* **style**
-  * postcss
-    * autoprefixer
-    * autoreset
-    * browser-reporter
-    * cssnext
-    * devtools
-    * discard-duplicates
-    * font-magician
-    * import
-    * url
-    * utilities
-
-* **quality**
-  * eslint
-    * **plugins**
-      * react
-      * babel
-  * stylelint
-  * tap
-    * babel-tap
-    * **utilities**
-      * capture-stream
+### Backend
+TODO
 
 ## Scripts
 * build - **production build**

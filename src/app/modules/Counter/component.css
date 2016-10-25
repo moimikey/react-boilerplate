@@ -1,22 +1,31 @@
-@import "../../theme.css";
+/***
+excellent fonts:
+  Nixie One | 500
+  Stint Ultra Expanded
+  Bungee Hairline
+***/
+@import "theme.css";
 
-.Counter {}
-
-.Counter h2 {
-  @apply --base-fonts;
-  @apply --base-colors;
+.Counter {
   display: block;
 }
 
-.Counter button {
-  @apply --base-fonts;
-  @apply --base-colors;
+.Counter-title {
+  font-family: "Nixie One", Helvetica Neue, Helvetica, sans-serif;
+  font-size: 1.2em;
+  display: block;
+}
+
+.Counter-increase {
   @apply --button-padding;
   @apply --north-gap;
-  border: 1px solid #40a070;
+  display: block;
+  border: 1px solid var(--blue);
+  font-family: "Vast Shadow", Helvetica Neue, Helvetica, sans-serif;
+  font-size: 1.2em;
 
   &:hover {
-    border-color: yellowgreen;
+    border-color: var(--red);
     cursor: pointer;
   }
 }
