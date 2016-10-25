@@ -95,8 +95,10 @@
   },
   "dependencies": {
     "babel-runtime": "6.11.6",
+    "camelize": "1.0.0",
     "classnames": "2.2.5",
     "cq-prolyfill": "0.3.2",
+    "decamelize": "1.2.0",
     "flux-standard-action": "0.6.1",
     "history": "4.3.0",
     "isomorphic-fetch": "2.2.1",
