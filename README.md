@@ -1,7 +1,5 @@
-# ⚛ web app boilerplate [![Build Status][travis-image]][travis-url]
+# ⚛ web app boilerplate [![Build Status][travis-image]][travis-url] [![License][git-license-image]][git-license-url]
 My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's, but better!
-
-[![License][npm-license-image]][npm-license-url]
 
 ## Install
 
@@ -48,7 +46,7 @@ docker-compose up
 ## License
 MIT
 
-[npm-license-url]: https://github.com/moimikey/react-boilerplate/blob/master/LICENSE
-[npm-license-image]: https://img.shields.io/npm/l/react-boilerplate.svg
+[git-license-url]: https://github.com/moimikey/react-boilerplate/blob/master/LICENSE
+[git-license-image]: https://img.shields.io/github/license/moimikey/react-boilerplate.svg
 [travis-url]: https://travis-ci.org/moimikey/react-boilerplate
 [travis-image]: https://travis-ci.org/moimikey/react-boilerplate.svg?branch=redux
