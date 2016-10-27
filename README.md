@@ -1,7 +1,7 @@
 # ⚛ web app boilerplate [![Build Status][travis-image]][travis-url]
 My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's, but better!
 
-![License][npm-license-image]][npm-license-url]
+[![License][npm-license-image]][npm-license-url]
 
 ## Install
 
