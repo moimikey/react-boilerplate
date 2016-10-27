@@ -14,7 +14,18 @@ const sharedPlugins = [
     hash: true,
     inject: false,
     meta: {
-      description: 'Something something darkside.'
+      title: 'Web Application Boilerplate',
+      description: 'Something something darkside.',
+      'og:card': 'summary',
+      'og:creator': '@moimikey',
+      'og:description': 'Something something darkside.',
+      'og:image': '',
+      'og:image:height': '250',
+      'og:image:width': '250',
+      'og:locale': 'en_US',
+      'og:site': '@moimikey',
+      'og:site_name': 'Web Application Boilerplate',
+      'og:title': 'Web Application Boilerplate',
     },
     minify: {
       collapseWhitespace: true,
