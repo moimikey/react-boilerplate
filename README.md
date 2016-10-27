@@ -1,4 +1,4 @@
-# ⚛ web app boilerplate [![Build Status][travis-image]][travis-url] [![License][git-license-image]][git-license-url]
+# ⚛ web app boilerplate [![Build Status][travis-image]][travis-url] [![License][git-license-image]][git-license-url] [![Donate Beer][beerpay-image]][beerpay-url]
 My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's, but better!
 
 ## Install
@@ -50,8 +50,5 @@ MIT
 [git-license-image]: https://img.shields.io/github/license/moimikey/react-boilerplate.svg
 [travis-url]: https://travis-ci.org/moimikey/react-boilerplate
 [travis-image]: https://travis-ci.org/moimikey/react-boilerplate.svg?branch=redux
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/moimikey/react-boilerplate/badge.svg?style=beer-square)](https://beerpay.io/moimikey/react-boilerplate)  [![Beerpay](https://beerpay.io/moimikey/react-boilerplate/make-wish.svg?style=flat-square)](https://beerpay.io/moimikey/react-boilerplate?focus=wish)
+[beerpay-url]: https://beerpay.io/moimikey/react-boilerplate
+[beerpay-image]: https://beerpay.io/moimikey/react-boilerplate/badge.svg?style=flat
