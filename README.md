@@ -1,9 +1,17 @@
 # ⚛ web app boilerplate [![Build Status][travis-image]][travis-url]
-a straight forward and high functioning web app boilerplate
+My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's, but better!
 
 ![License][npm-license-image]][npm-license-url]
 
 ## Install
+
+### Local
+```
+npm install
+npm start
+```
+
+### Docker
 ```
 docker-compose build
 docker-compose up
@@ -13,13 +21,17 @@ docker-compose up
 
 ### Frontend
 * react
-* redux w/ routing & async actions
+* redux w/ async routing & code splitting (webpack)
+* socket.io-client
+
+### Backend
+* HTTP - koa
+* DB, MQ - redis, nanomsg
 
 #### TODO
 * advanced routing architecture:
-
-### Backend
-TODO
+* redux saga
+* distributed config w/ local cache
 
 ## Scripts
 * build - **production build**
@@ -32,11 +44,6 @@ TODO
 * test - **test with immediate exit & stats (single run)**
 * test:dev - **test with immediate exit (single run)**
 * test:watch - **test with watcher (for dev)**
-
-## Install
-```
-yarn install || npm install
-```
 
 ## License
 MIT
