@@ -1,6 +1,30 @@
 # ⚛ web app boilerplate [![Build Status][travis-image]][travis-url] [![License][git-license-image]][git-license-url] [![Donate Beer][beerpay-image]][beerpay-url]
 My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's, but better!
 
+## Why use this boilerplate?
+Everyone has their own opinion on how they want their code base to look. There are hundreds of boilerplates for a React and Redux applications. Especially when they're architected to solve specific problems like async control flow or isolation of "side-effects."
+
+The reason for this boilerplate was to not only address various concerns within scalable, production-ready web application, but also the code itself.
+
+This boilerplate is meant to be an intuitive, easy to follow, scalable and secure, modern web application boilerplate with options to expand into dockerized micro architectures and beyond.
+
+## Goals / TODO
+- [ ] Distributed configuration and caching with `redis`
+- [ ] Realtime `redux` communication over `WebSockets`
+
+## Features
+* Easy to read, follow and scale from
+* Containerization with `docker` (optional)
+* Enhanced logging and debugging features
+* Support for ES3-ES8 (full es2017 support with `babel`)
+* Asynchronous testing with `tap`
+  * Paired with `enzyme` for `react`
+* Configurable linting with `eslint`
+* Unidirectional data flow with `redux` 
+  * Paired with `redux-saga`
+* State persistance and hydration with `redux-persist`
+  * Paired with `redux-persist-crosstab` for unified sessions
+
 ## Install
 
 ### Local
