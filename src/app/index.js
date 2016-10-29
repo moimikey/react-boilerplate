@@ -21,6 +21,8 @@ const rootEl = document.getElementById('root')
 const store = mountResponsive(configureStore(browserHistory))
 const history = syncHistoryWithStore(browserHistory, store)
 
+import './global.css'
+
 let getRoutes = routes
 
 const beforeStart = () => {

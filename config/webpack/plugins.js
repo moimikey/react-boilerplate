@@ -2,6 +2,7 @@
 import CompressionPlugin from 'compression-webpack-plugin'
 import DedupePlugin from 'webpack/lib/optimize/DedupePlugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HappyPackPlugin from 'happypack'
 import HotModuleReplacementPlugin from 'webpack/lib/HotModuleReplacementPlugin'
 import HtmlTemplatePlugin from 'html-webpack-plugin'
 import UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin'
@@ -38,6 +39,10 @@ const sharedPlugins = [
     template: '!!ejs!./index.ejs',
     unsupportedBrowser: true,
     window: {},
+    // scripts: [{
+    //   src: 'https://cdn.ravenjs.com/3.7.0/raven.min.js',
+    //   crossorigin: 'anonymous'
+    // }]
   })
 ]
 export const extractTextPluginInstance = new ExtractTextPlugin({
@@ -50,7 +55,12 @@ export default {
     ...sharedPlugins,
     new HotModuleReplacementPlugin(),
     new VisualizerPlugin(),
-    new NotifierPlugin()
+    new NotifierPlugin(),
+    new HappyPackPlugin({
+      loaders: require('./loaders').default['development'][0].use,
+      id: 'css',
+      threads: 3
+    })
   ],
   production: [
     ...sharedPlugins,

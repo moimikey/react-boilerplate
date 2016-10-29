@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <% } %>
   <% if (htmlWebpackPlugin.options.meta) { %>
-    <% for (var key in htmlWebpackPlugin.options.meta) { %>
+    <% for (let key in htmlWebpackPlugin.options.meta) { %>
       <meta name="<%= key %>" content="<%= htmlWebpackPlugin.options.meta[key] %>">
     <% } %>
   <% } %>
@@ -20,10 +20,10 @@
     <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon %>">
   <% } %>
   <% if (htmlWebpackPlugin.options.links) { %>
-    <% for(var link of htmlWebpackPlugin.options.links) { %>
+    <% for(let link of htmlWebpackPlugin.options.links) { %>
       <% if (link !== null && typeof link === 'object' ) { %>
         <link
-          <% for (var key in link) { %>
+          <% for (let key in link) { %>
             <%= key %>="<%= link[key] %>"
           <% } %>
         >
@@ -32,7 +32,7 @@
       <% } %>
     <% } %>
   <% } %>
-  <% for (var css in htmlWebpackPlugin.files.css) { %>
+  <% for (let css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
   <% } %>
   <% if (htmlWebpackPlugin.options.baseHref) { %>
@@ -54,23 +54,28 @@
   <div id="<%= htmlWebpackPlugin.options.appMountId %>"></div>
 <% } %>
 <% if (htmlWebpackPlugin.options.appMountIds && htmlWebpackPlugin.options.appMountIds.length > 0) { %>
-  <% for (var index in htmlWebpackPlugin.options.appMountIds) { %>
+  <% for (let index in htmlWebpackPlugin.options.appMountIds) { %>
     <div id="<%= htmlWebpackPlugin.options.appMountIds[index] %>"></div>
   <% } %>
 <% } %>
 <% if (htmlWebpackPlugin.options.window) { %>
   <script>
-    <% for (var varName in htmlWebpackPlugin.options.window) { %>
+    <% for (let varName in htmlWebpackPlugin.options.window) { %>
     window['<%= varName %>'] = <%= JSON.stringify(htmlWebpackPlugin.options.window[varName]) %>;
     <% } %>
   </script>
 <% } %>
 <% if (htmlWebpackPlugin.options.scripts) { %>
-  <% for (var script of htmlWebpackPlugin.options.scripts) { %>
-    <script src="<%= script %>"></script>
+  <% for (let script of htmlWebpackPlugin.options.scripts) { %>
+    <script
+      <% if (script.src) { %>src="<%= script.src %>"<% } %>
+      <% if (script.crossorigin) { %>crossorigin="<%= script.crossorigin %>"<% } %>
+    >
+      <% if (script.body) { %><%= script.body %><% } %>
+    </script>
   <% } %>
 <% } %>
-<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+<% for (let chunk in htmlWebpackPlugin.files.chunks) { %>
   <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
 <% } %>
 <% if (htmlWebpackPlugin.options.googleAnalytics) { %>

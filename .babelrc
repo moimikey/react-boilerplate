@@ -2,7 +2,7 @@
   "presets": [
     ["latest", {
       "es2015": {
-        "spec": false
+        "spec": true
       }
     }],
     "stage-0",
@@ -11,10 +11,7 @@
   "plugins": [
     "ramda",
     "transform-decorators-legacy",
-    "transform-decorators",
-    ["transform-runtime", {
-      "polyfill": true
-    }]
+    "transform-decorators"
   ],
   "env": {
     "development": {

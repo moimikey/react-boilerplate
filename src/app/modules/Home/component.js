@@ -10,7 +10,11 @@ export default class Home extends Component {
   render() {
     return (
       <div styleName="Home">
-        Home
+        <section styleName="row">
+          <div styleName="quarter">1</div>
+          <div styleName="half">2</div>
+          <div styleName="quarter">3</div>
+        </section>
       </div>
     )
   }

@@ -4,7 +4,7 @@ import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin'
 import NamedModulesPlugin from 'webpack/lib/NamedModulesPlugin'
-import HappyPack from 'happypack'
+import HappyPackPlugin from 'happypack'
 import plugins from './plugins'
 import loaders from './loaders'
 import postcss from './postcss'
@@ -31,25 +31,15 @@ module.exports = ({
       filename: 'bundle.js'
     },
     plugins: [
-      new HappyPack({
+      new HappyPackPlugin({
         loaders: ['babel'],
         id: 'js',
-        threads: 3
-      }),
-      new HappyPack({
-        loaders: require('./loaders').default[env][0].loaders,
-        id: 'css',
         threads: 3
       }),
       new DefinePlugin({
         __DEVELOPMENT__: JSON.stringify(isDev),
         __PRODUCTION__: JSON.stringify(isProd),
-        ...isDev && { DEV_SERVER_PORT: JSON.stringify(SERVER_PORT) },
-        ...isDev && { DEV_SERVER_HOST: JSON.stringify(SERVER_HOST) },
-        APP_PATH: JSON.stringify(path.join(__dirname, 'src/app')),
-        ROOT_PATH: JSON.stringify(__dirname),
-        ENV: JSON.stringify(NODE_ENV),
-        ENV_PATH: JSON.stringify(require(path.join(__dirname, './config/env/', NODE_ENV))),
+        __ROOT_DIR__: JSON.stringify(__dirname),
         'process.env': {
           'NODE_ENV': JSON.stringify(NODE_ENV)
         }
@@ -59,7 +49,7 @@ module.exports = ({
           `build [:bar] \n` +
           `${chalk.green.bold(':percent')} (:elapsed seconds)\n` +
           `>>> :msg`,
-        clear: false,
+        clear: true,
         complete: '█',
         incomplete: '░'
       }),
@@ -104,7 +94,9 @@ module.exports = ({
         use: ['babel'],
         include: path.join(__dirname, OPTIONS.srcDir),
         options: {
-          happy: {id: 'js'}
+          happy: {
+            id: 'js'
+          }
         }
       }, {
         test: /\.json$/,
