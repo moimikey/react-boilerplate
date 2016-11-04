@@ -1,4 +1,3 @@
-/*
 import React, { Component, PropTypes as T } from 'react'
 import { persistStore } from 'redux-persist'
 export const renderOnHydrate = store => {
@@ -25,4 +24,3 @@ export const renderOnHydrate = store => {
     }
   }
 }
-*/

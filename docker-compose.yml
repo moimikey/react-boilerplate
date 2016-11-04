@@ -1,9 +1,9 @@
 web:
   build: .
   volumes:
-    - "./src/app:/src/app"
+    - "./dist:/app"
   ports:
-    - "3030:3000"
+    - "3030:3001"
   links:
     - "db:redis"
 

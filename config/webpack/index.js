@@ -31,14 +31,10 @@ module.exports = ({
       filename: 'bundle.js'
     },
     plugins: [
-      new HappyPackPlugin({
-        loaders: ['babel'],
-        id: 'js',
-        threads: 3
-      }),
       new DefinePlugin({
         __DEVELOPMENT__: JSON.stringify(isDev),
         __PRODUCTION__: JSON.stringify(isProd),
+        __ENV__: JSON.stringify(NODE_ENV),
         __ROOT_DIR__: JSON.stringify(__dirname),
         'process.env': {
           'NODE_ENV': JSON.stringify(NODE_ENV)
@@ -54,13 +50,18 @@ module.exports = ({
         incomplete: '░'
       }),
       new LoaderOptionsPlugin({
-        debug: isDev,
-        minimize: !isDev,
         options: {
-          devTool: isDev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
           context: __dirname,
+          debug: isDev,
+          minimize: !isDev,
+          devTool: isDev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
           postcss
         }
+      }),
+      new HappyPackPlugin({
+        loaders: ['babel'],
+        id: 'js',
+        threads: 4
       }),
       new NamedModulesPlugin(),
       ...plugins[NODE_ENV]
@@ -68,10 +69,14 @@ module.exports = ({
     resolve: {
       extensions: [
         '.js',
-        '.json'
+        '.json',
+        '.css',
+        '.ejs',
+        '.html'
       ],
       alias: {
-        app: path.join(__dirname, 'src/app')
+        app: path.join(__dirname, 'src/app'),
+        config: path.join(__dirname, 'config')
       },
       modules: [
         'node_modules',

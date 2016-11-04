@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { persistStore } from 'redux-persist'
+import { asyncSessionStorage } from 'redux-persist/storages'
 import { AppContainer } from 'react-hot-loader'
 import crosstabSync from 'redux-persist-crosstab'
 import createExpirationTransform from 'redux-persist-transform-expire'
@@ -39,12 +40,12 @@ let start = () => {
 
   crosstabSync(persistStore(store, {
     keyPrefix: 'deadbeef:',
-    transforms: [
-      createExpirationTransform({
-        expireKey: 'customExpiresAt'
-      })
-    ],
-    storage: localforage,
+    // transforms: [
+    //   createExpirationTransform({
+    //     expireKey: 'customExpiresAt'
+    //   })
+    // ],
+    storage: asyncSessionStorage,
     blacklist: [
       'routing'
     ]

@@ -75,8 +75,10 @@
     </script>
   <% } %>
 <% } %>
-<% for (let chunk in htmlWebpackPlugin.files.chunks) { %>
-  <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<% if (htmlWebpackPlugin.files.chunks) { %>
+  <% for (let chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+  <% } %>
 <% } %>
 <% if (htmlWebpackPlugin.options.googleAnalytics) { %>
   <script>

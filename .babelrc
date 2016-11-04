@@ -11,7 +11,11 @@
   "plugins": [
     "ramda",
     "transform-decorators-legacy",
-    "transform-decorators"
+    "transform-decorators",
+    "transform-react-constant-elements",
+    "transform-react-remove-prop-types",
+    "transform-react-pure-class-to-function"
+
   ],
   "env": {
     "development": {

@@ -38,7 +38,7 @@ const sharedPlugins = [
     mobile: true,
     template: '!!ejs!./index.ejs',
     unsupportedBrowser: true,
-    window: {},
+    // window: {},
     // scripts: [{
     //   src: 'https://cdn.ravenjs.com/3.7.0/raven.min.js',
     //   crossorigin: 'anonymous'
@@ -48,7 +48,7 @@ const sharedPlugins = [
 export const extractTextPluginInstance = new ExtractTextPlugin({
   disable: false,
   allChunks: true,
-  filename: '[name].[contenthash].css'
+  filename: '[name].css?[contenthash]'
 })
 export default {
   development: [
@@ -63,7 +63,6 @@ export default {
     })
   ],
   production: [
-    ...sharedPlugins,
     extractTextPluginInstance,
     // new CommonsChunkPlugin({
     //   name: 'vendor',
@@ -87,7 +86,8 @@ export default {
       test: /\.(js|css|html)$/,
       threshold: 10240,
       minRatio: 0
-    })
+    }),
+    ...sharedPlugins
   ],
   test: []
 }

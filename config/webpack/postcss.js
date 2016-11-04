@@ -5,6 +5,7 @@ const sharedPlugins = webpack => ([
   require('postcss-import')({
     addDependencyTo: webpack,
     path: ['node_modules', 'src/app']
+    // plugins: []
   }),
   require('postcss-url')(),
   require('postcss-cssnext')(),

@@ -1,3 +1,4 @@
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import { extractTextPluginInstance } from './plugins'
 const sharedLoaders = [
   {
@@ -16,13 +17,21 @@ export default {
   production: [
     {
       test: /\.css$/,
-      use: extractTextPluginInstance.extract({
-        fallbackLoader: 'style',
-        loader: [
-          { loader: 'css', query: '?modules&importLoaders=1&localIdentName=[hash:base64:12]' },
-          { loader: 'postcss', query: '?pack=production' }
-        ]
-      })
+      use: [
+        ExtractTextPlugin.extract({
+          fallbackLoader: 'style',
+          loader: [
+            { use: 'css', options: { modules: true, importLoaders: 1, sourceMaps: true, localIdentName: '[hash:base64:12]' } },
+            { use: 'postcss', options: { pack: 'production' } }
+          ]
+        })
+      ],
+      // options: {
+      //   loader: [
+      //     'css?modules=true&importLoaders=1&localIdentName=[hash:base64:12]',
+      //     'postcss?pack=production'
+      //   ]
+      // }
     }
   ],
   test: [

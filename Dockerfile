@@ -2,13 +2,13 @@ FROM mhart/alpine-node:6
 
 RUN apk add --no-cache git
 
-RUN mkdir -p /src
-WORKDIR /src
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY package.json /src
+COPY package.json /app
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 3001
 
 CMD npm run build
 CMD npm run server

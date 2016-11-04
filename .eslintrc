@@ -5,14 +5,18 @@
   ],
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaFeatures": [
-      "jsx"
-    ],
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": 6,
     "sourceType": "module"
   },
   "rules": {
-    "semi": [2,"never"],
+    "comma-dangle": ["error", "never"],
+    "semi": ["error", "never"],
+    "no-warning-comments": ["error", "never"],
+    "vars-on-top": ["error", "always"],
+    "no-irregular-whitespace":  2,
     "no-unexpected-multiline": 0,
     "no-console": 1,
     "no-unused-vars": 1,
@@ -26,11 +30,10 @@
     "babel/no-await-in-loop": 1
   },
   "env": {
+    "browser": true,
+    "commonjs": true,
     "es6": true,
     "node": true,
-    "browser": true,
-    "shelljs": true,
-    "commonjs": true,
     "shared-node-browser": true
   },
   "plugins": [
@@ -42,13 +45,11 @@
   "globals": {
     "__DEVELOPMENT__": true,
     "__PRODUCTION__": true,
-    "APP_PATH": true,
+    "__ROOT_DIR__": true,
+    "__ENV__": true,
     "DEV_SERVER_PORT": true,
     "DEV_SERVER_HOST": true,
-    "ENV": true,
-    "ENV_PATH": true,
     "NODE_ENV": true,
-    "ROOT_PATH": true,
     "SERVER_PORT": true,
     "SERVER_HOST": true
   }
