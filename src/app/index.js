@@ -13,19 +13,14 @@ import crosstabSync from 'redux-persist-crosstab'
 // import localforage from 'localforage'
 import { mountResponsive } from 'app/utils/hocs/responsive'
 import getClientBrowserInfo from 'app/utils/getClientBrowserInfo'
-
-// import routes from './routes'
 import configureStore from './configureStore'
-
 import Loading from 'app/components/Loading'
+
+import './global.css'
 
 const rootEl = document.getElementById('root')
 const store = mountResponsive(configureStore(browserHistory))
 const history = syncHistoryWithStore(browserHistory, store)
-
-import './global.css'
-
-// let getRoutes = routes
 
 const beforeStart = () => {
   const client = getClientBrowserInfo()
@@ -63,14 +58,6 @@ let start = () => {
     )
   }))
 }
-
-module.hot && module.hot.accept('./routes', () =>
-  require('set-immediate-shim')(() => {
-    getRoutes = require('./routes').default
-    unmountComponentAtNode(rootEl)
-    start()
-  })
-)
 
 beforeStart()
 start()
