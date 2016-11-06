@@ -1,7 +1,7 @@
 /* eslint no-console:0 */
 import React from 'react'
 import routes from 'routes!./pages'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'

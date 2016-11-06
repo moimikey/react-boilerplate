@@ -1,5 +1,5 @@
 {
-  "name": "PACKAGE_NAME",
+  "name": "react-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,12 +7,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moimikey/PACKAGE_NAME.git"
+    "url": "https://github.com/moimikey/react-boilerplate.git"
   },
   "bugs": {
-    "url": "https://github.com/moimikey/PACKAGE_NAME/issues"
+    "url": "https://github.com/moimikey/react-boilerplate/issues"
   },
-  "homepage": "https://github.com/moimikey/PACKAGE_NAME",
+  "homepage": "https://github.com/moimikey/react-boilerplate",
   "keywords": [
     "boilerplate",
     "react"
