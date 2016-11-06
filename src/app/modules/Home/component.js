@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import CSS from 'react-css-modules'
 import stylesheet from './component.css'
 @CSS(stylesheet)

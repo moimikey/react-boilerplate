@@ -27,5 +27,7 @@ export default {
     ...sharedMiddleware,
     logger
   ],
-  test: []
-}[__ENV__]
+  test: [
+    ...sharedMiddleware
+  ]
+}[__ENV__ || 'development']

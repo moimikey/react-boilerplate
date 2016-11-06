@@ -17,12 +17,10 @@ const sharedPlugins = webpack => ([
 export default webpack => {
   return {
     development: [
-      ...sharedPlugins(webpack),
       require('postcss-devtools')(),
-      require('postcss-browser-reporter')(),
-      require('postcss-reporter')({
-        clearMessages: true
-      })
+      ...sharedPlugins(webpack),
+      require('postcss-reporter')(),
+      require('postcss-browser-reporter')()
     ],
     production: [
       ...sharedPlugins(webpack)

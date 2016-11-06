@@ -5,7 +5,7 @@ import addClasses from 'app/utils/addClasses'
 import CSS from 'react-css-modules'
 import { getMediaQueries } from 'app/utils/store-queries'
 import Page from 'app/components/Page'
-import stylesheet from './App.css'
+import stylesheet from './component.css'
 @connect(
   state => ({
     mq$: getMediaQueries(state)
@@ -34,8 +34,11 @@ export default class App extends Component {
         <Page>
           <section styleName="App-menu">
             <ul>
-              <li><Link to="/counter">Good Route</Link></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/counter">Counter</Link></li>
               <li><Link to="/hello-world">Bad Route</Link></li>
+              <li><Link to="/profile">Profile</Link></li>
+              <li><Link to="/profile/edit">Profile: Edit</Link></li>
             </ul>
           </section>
           <section styleName="App-content">

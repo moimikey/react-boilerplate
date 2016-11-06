@@ -1,11 +1,11 @@
 import { reducers, test } from 'app/utils/test/setup'
-test('Counter reducer', t => {
+test('counter reducer', t => {
   const state = reducers({
-    Counter: { count: 19 }
+    counter: { count: 19 }
   }, {
     type: 'INCREMENT',
     payload: { amount: 1 }
   })
-  t.equal(state.Counter.count, 20, 'INCREMENT')
+  t.equal(state.counter.count, 20, 'INCREMENT')
   t.end()
 })

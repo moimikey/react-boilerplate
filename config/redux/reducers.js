@@ -1,12 +1,18 @@
-// function requireAll(requireContext) {
-//   return requireContext.keys().map(requireContext)
-// }
-
-const getAllReducers = () => {
-  const reducers = require.context('../../src/app/modules', true, /^\.\/.*\.js$/)
-  return reducers.keys()
+function requireAll(requireContext) {
+  return requireContext.keys().reduce((reducers, reducer) => ({
+    ...reducers,
+    [reducer.substr(2).split('/')[0].toLowerCase()]: requireContext(reducer).default
+  }), {})
 }
 
+const reducers = requireAll(
+  require.context(
+    '../../src/app/modules',
+    true, // recurse subdirectories
+    /^\.\/.*\/reducers\.js$/
+  )
+)
+
 export default {
-  getAllReducers
+  ...reducers
 }

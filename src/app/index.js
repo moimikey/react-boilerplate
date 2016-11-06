@@ -1,5 +1,6 @@
 /* eslint no-console:0 */
 import React from 'react'
+import routes from 'routes!./pages'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
@@ -8,12 +9,12 @@ import { persistStore } from 'redux-persist'
 import { asyncSessionStorage } from 'redux-persist/storages'
 import { AppContainer } from 'react-hot-loader'
 import crosstabSync from 'redux-persist-crosstab'
-import createExpirationTransform from 'redux-persist-transform-expire'
-import localforage from 'localforage'
+// import createExpirationTransform from 'redux-persist-transform-expire'
+// import localforage from 'localforage'
 import { mountResponsive } from 'app/utils/hocs/responsive'
 import getClientBrowserInfo from 'app/utils/getClientBrowserInfo'
 
-import routes from './routes'
+// import routes from './routes'
 import configureStore from './configureStore'
 
 import Loading from 'app/components/Loading'
@@ -24,7 +25,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 import './global.css'
 
-let getRoutes = routes
+// let getRoutes = routes
 
 const beforeStart = () => {
   const client = getClientBrowserInfo()
@@ -50,13 +51,12 @@ let start = () => {
       'routing'
     ]
   }, () => {
+    // {getRoutes(store)}
     console.log('[WPS] Syncing localStorage...')
     render(
       <Provider store={store} key="provider">
         <AppContainer>
-          <Router history={history}>
-            {getRoutes(store)}
-          </Router>
+          <Router history={history} routes={routes} />
         </AppContainer>
       </Provider>,
       rootEl

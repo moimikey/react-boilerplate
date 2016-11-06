@@ -1,7 +1,1 @@
-import R from 'ramda'
-const { Counter, FourOhFour, Home } = R.identity
-export default {
-  Counter,
-  FourOhFour,
-  Home
-}
+export { component as default } from 'app/modules/Home'

@@ -11,6 +11,7 @@ import NotifierPlugin from './plugins/TestPlugin'
 const sharedPlugins = [
   new HtmlTemplatePlugin({
     appMountId: 'root',
+    baseHref: '/',
     // googleAnalytics: { trackingId: null, pageViewOnLoad: null },
     hash: true,
     inject: false,
@@ -26,7 +27,7 @@ const sharedPlugins = [
       'og:locale': 'en_US',
       'og:site': '@moimikey',
       'og:site_name': 'Web Application Boilerplate',
-      'og:title': 'Web Application Boilerplate',
+      'og:title': 'Web Application Boilerplate'
     },
     minify: {
       collapseWhitespace: true,
@@ -37,7 +38,7 @@ const sharedPlugins = [
     },
     mobile: true,
     template: '!!ejs!./index.ejs',
-    unsupportedBrowser: true,
+    unsupportedBrowser: true
     // window: {},
     // scripts: [{
     //   src: 'https://cdn.ravenjs.com/3.7.0/raven.min.js',
@@ -59,10 +60,11 @@ export default {
     new HappyPackPlugin({
       loaders: require('./loaders').default['development'][0].use,
       id: 'css',
-      threads: 3
+      threads: 1
     })
   ],
   production: [
+    ...sharedPlugins,
     extractTextPluginInstance,
     // new CommonsChunkPlugin({
     //   name: 'vendor',
@@ -86,8 +88,7 @@ export default {
       test: /\.(js|css|html)$/,
       threshold: 10240,
       minRatio: 0
-    }),
-    ...sharedPlugins
+    })
   ],
   test: []
 }

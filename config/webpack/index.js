@@ -4,6 +4,7 @@ import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
 import LoaderOptionsPlugin from 'webpack/lib/LoaderOptionsPlugin'
 import NamedModulesPlugin from 'webpack/lib/NamedModulesPlugin'
+import IgnorePlugin from 'webpack/lib/IgnorePlugin'
 import HappyPackPlugin from 'happypack'
 import plugins from './plugins'
 import loaders from './loaders'
@@ -34,12 +35,13 @@ module.exports = ({
       new DefinePlugin({
         __DEVELOPMENT__: JSON.stringify(isDev),
         __PRODUCTION__: JSON.stringify(isProd),
-        __ENV__: JSON.stringify(NODE_ENV),
         __ROOT_DIR__: JSON.stringify(__dirname),
+        __ENV__: JSON.stringify(NODE_ENV),
         'process.env': {
           'NODE_ENV': JSON.stringify(NODE_ENV)
         }
       }),
+      new IgnorePlugin(/^(buffertools)$/),
       new ProgressBarPlugin({
         format:
           `build [:bar] \n` +
@@ -54,14 +56,14 @@ module.exports = ({
           context: __dirname,
           debug: isDev,
           minimize: !isDev,
-          devTool: isDev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
+          devTool: isDev ? 'eval-source-map' : 'hidden-source-map',
           postcss
         }
       }),
       new HappyPackPlugin({
         loaders: ['babel'],
         id: 'js',
-        threads: 4
+        threads: 1
       }),
       new NamedModulesPlugin(),
       ...plugins[NODE_ENV]

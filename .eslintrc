@@ -14,8 +14,6 @@
   "rules": {
     "comma-dangle": ["error", "never"],
     "semi": ["error", "never"],
-    "no-warning-comments": ["error", "never"],
-    "vars-on-top": ["error", "always"],
     "no-irregular-whitespace":  2,
     "no-unexpected-multiline": 0,
     "no-console": 1,

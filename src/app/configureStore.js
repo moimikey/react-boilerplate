@@ -1,40 +1,43 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import { unstable_batchedUpdates as batchedUpdates } from 'react-dom'
+// import { unstable_batchedUpdates as batchedUpdates } from 'react-dom'
 import { autoRehydrate } from 'redux-persist'
 import { routerMiddleware } from 'react-router-redux'
-import { batchedSubscribe } from 'redux-batched-subscribe'
+// import { batchedSubscribe } from 'redux-batched-subscribe'
 import middleware from './middleware'
 import { DevTools } from 'app/components/DevTools'
-const devTools = global.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
+import { window } from 'app/utils/global'
+
+const devTools = window.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
+
 export default function configureStore(history) {
   let finalCreateStore
+
+  const sharedEnhancers = compose(
+    applyMiddleware(...middleware, routerMiddleware(history)),
+    // batchedSubscribe(batchedUpdates),
+    autoRehydrate()
+  )
 
   if (__DEVELOPMENT__) {
     const { persistState } = require('redux-devtools')
     finalCreateStore = compose(
-      applyMiddleware(...middleware, routerMiddleware(history)),
+      sharedEnhancers,
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
-      batchedSubscribe(batchedUpdates),
-      autoRehydrate(),
       devTools
     )(createStore)
   } else {
     finalCreateStore = compose(
-      applyMiddleware(...middleware, routerMiddleware(history)),
-      batchedSubscribe(batchedUpdates),
-      autoRehydrate(),
+      sharedEnhancers
     )(createStore)
   }
 
-  const reducers = require('./reducers').default
   const store = finalCreateStore(
-    reducers,
+    require('./reducers').default,
     Object.create(null)
   )
 
-  module.hot &&
-    module.hot.accept('./reducers', () =>
-      store.replaceReducer(require('./reducers').default))
+  module.hot && module.hot.accept('./reducers', () =>
+    store.replaceReducer(require('./reducers').default))
 
   return store
 }

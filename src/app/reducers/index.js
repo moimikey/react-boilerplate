@@ -1,17 +1,15 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import { reducer as mq$ } from 'redux-mediaquery'
-import { reducers as Counter } from 'app/modules/Counter'
-import reducerz from 'config/redux/reducers'
-export const reducers = {
+import reducers from '!babel!config/redux/reducers'
+export const rootReducers = {
   mq$,
-  Counter,
+  ...reducers
 }
 export default combineReducers({
-  ...reducers,
+  ...rootReducers,
   routing: routerReducer
 })
-console.log(reducerz.default.getAllReducers())
 // import { handleActions } from 'redux-actions'
 // import { increment } from '../actions/CounterActions'
 //
