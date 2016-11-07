@@ -2,12 +2,18 @@
 @import '../grid.css';
 
 .PrimaryNavigation ul {
+  display: block;
   list-style: none;
   margin: 0;
 }
 
 .PrimaryNavigation li {
   display: block;
+}
+
+.PrimaryNavigation ul li ul {
+  display: block;
+  margin-left: 1.28571em;
 }
 
 .PrimaryNavigation li a {

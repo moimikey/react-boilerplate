@@ -6,6 +6,7 @@
 .npm/
 .sass-cache/
 .vscode/
+.webpack/
 *.cache*
 *.css.map*
 *.iws*

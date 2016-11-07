@@ -25,6 +25,13 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 const beforeStart = () => {
   console.log('[APP] Pre-loading...')
+  global.__APP__ = {
+    backup: {
+      console: global.console
+    }
+  }
+  global.console.log = global.console.warn = global.console.error = console.info.bind(console)
+  global.localStorage.DEBUG='*'
   const client = getClientBrowserInfo()
   __DEVELOPMENT__ && require('react-a11y')(React, {
     throw: true,
