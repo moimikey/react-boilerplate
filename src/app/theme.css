@@ -6,6 +6,9 @@
   --module-padding: {
     padding: var(--padding);
   }
+  --menu-font: {
+    font-family: 'Roboto'
+  }
   --button-padding: {
     padding: 4px 8px;
   }

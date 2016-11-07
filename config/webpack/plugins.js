@@ -1,10 +1,12 @@
 // import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
+import path from 'path'
 import CompressionPlugin from 'compression-webpack-plugin'
 import DedupePlugin from 'webpack/lib/optimize/DedupePlugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HappyPackPlugin from 'happypack'
 import HotModuleReplacementPlugin from 'webpack/lib/HotModuleReplacementPlugin'
 import HtmlTemplatePlugin from 'html-webpack-plugin'
+import OnlyIfChangedPlugin from 'only-if-changed-webpack-plugin'
 import UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin'
 import VisualizerPlugin from 'webpack-visualizer-plugin'
 import NotifierPlugin from './plugins/TestPlugin'
@@ -49,8 +51,12 @@ const sharedPlugins = [
 export const extractTextPluginInstance = new ExtractTextPlugin({
   disable: false,
   allChunks: true,
-  filename: '[name].css?[contenthash]'
+  filename: '[name].css'
 })
+const OnlyIfChangedPluginOptions = {
+  rootDir: process.cwd(),
+  devBuild: process.env.NODE_ENV !== 'production'
+}
 export default {
   development: [
     ...sharedPlugins,
@@ -61,6 +67,10 @@ export default {
       loaders: require('./loaders').default['development'][0].use,
       id: 'css',
       threads: 1
+    }),
+    new OnlyIfChangedPlugin({
+      cacheDirectory: path.join(OnlyIfChangedPluginOptions.rootDir, '.webpack'),
+      cacheIdentifier: OnlyIfChangedPluginOptions
     })
   ],
   production: [

@@ -1,17 +1,17 @@
 import React, { Component, PropTypes as T } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import addClasses from 'app/utils/addClasses'
 import CSS from 'react-css-modules'
 import { getMediaQueries } from 'app/utils/store-queries'
 import Page from 'app/components/Page'
+import PrimaryNavigation from 'app/components/PrimaryNavigation'
 import stylesheet from './component.css'
 @connect(
   state => ({
     mq$: getMediaQueries(state)
   })
 )
-@CSS(stylesheet)
+@CSS(stylesheet, { allowMultiple: true })
 export default class App extends Component {
   static propTypes = {
     children: T.object.isRequired,
@@ -33,13 +33,7 @@ export default class App extends Component {
       <div className={classNames} styleName="App">
         <Page>
           <section styleName="App-menu">
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/counter">Counter</Link></li>
-              <li><Link to="/hello-world">Bad Route</Link></li>
-              <li><Link to="/profile">Profile</Link></li>
-              <li><Link to="/profile/edit">Profile: Edit</Link></li>
-            </ul>
+            <PrimaryNavigation />
           </section>
           <section styleName="App-content">
             {children}

@@ -29,7 +29,8 @@ module.exports = ({
     ],
     output: {
       path: path.join(__dirname, OPTIONS.destDir),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
+      chunkFilename: '[id].[chunkhash].js'
     },
     plugins: [
       new DefinePlugin({
@@ -98,7 +99,7 @@ module.exports = ({
         loader: 'eslint'
       }, {
         test: /\.js$/,
-        use: ['babel'],
+        use: ['babel'/*, 'webpack-module-hot-accept'*/],
         include: path.join(__dirname, OPTIONS.srcDir),
         options: {
           happy: {
@@ -118,10 +119,10 @@ module.exports = ({
         use: ['html'],
         include: path.join(__dirname, OPTIONS.rootDir)
       }, {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: ['url?limit=10000&mimetype=application/font-woff']
       }, {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot|otf|svg)(\?[\s\S]+)?$/,
         use: ['file']
       },
       ...loaders[NODE_ENV]

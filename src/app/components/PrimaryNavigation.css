@@ -1,0 +1,15 @@
+@import '../theme.css';
+@import '../grid.css';
+
+.PrimaryNavigation ul {
+  list-style: none;
+  margin: 0;
+}
+
+.PrimaryNavigation li {
+  display: block;
+}
+
+.PrimaryNavigation li a {
+  @apply --menu-font;
+}

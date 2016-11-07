@@ -37,7 +37,8 @@ export default function configureStore(history) {
   )
 
   module.hot && module.hot.accept('./reducers', () =>
-    store.replaceReducer(require('./reducers').default))
+    store.replaceReducer(require('./reducers').default)
+  )
 
   return store
 }

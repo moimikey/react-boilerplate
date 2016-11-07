@@ -1,8 +1,12 @@
 import React from 'react'
-import { Loader } from 'react-loaders'
-import './Loading.css'
+import Loader from 'react-loading-bar'
+import '!style!css!react-loading-bar/dist/index.css'
 export default function Loading() {
   return (
-    <Loader type="ball-beat" active />
+    <div>
+      <span className="fa fa-cog fa-spin fa-3x fa-fw" />
+      <span className="sr-only" aria-hidden="true">Loading...</span>
+      <Loader show={true} color="red" />
+    </div>
   )
 }

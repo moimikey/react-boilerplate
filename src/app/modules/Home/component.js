@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CSS from 'react-css-modules'
 import stylesheet from './component.css'
-@CSS(stylesheet)
+@CSS(stylesheet, { allowMultiple: true })
 export default class Home extends Component {
   constructor(props) {
     super(props)

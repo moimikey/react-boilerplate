@@ -26,6 +26,9 @@ new WebpackDevServer(webpack(config(process.env.NODE_ENV)), {
     reasons: true,
     timings: true,
     version: true
+  },
+  setup: function(app) {
+    console.log(app)
   }
 }).listen(SERVER_PORT, SERVER_HOST, err => {
   if (err) return log(err)

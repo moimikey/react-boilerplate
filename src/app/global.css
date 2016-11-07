@@ -1,7 +1,4 @@
-@lost gutter 20px;
-@lost flexbox flex;
-@lost cycle none;
-@lost clearing left
+@import './lost.css';
 
 html {
   height: 100%;
@@ -12,4 +9,3 @@ body {
   position: relative;
   height: 100%;
 }
-

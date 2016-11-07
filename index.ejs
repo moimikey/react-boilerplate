@@ -5,19 +5,19 @@
 <% } %>
 >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <% if (htmlWebpackPlugin.options.mobile) { %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   <% } %>
   <% if (htmlWebpackPlugin.options.meta) { %>
     <% for (let key in htmlWebpackPlugin.options.meta) { %>
-      <meta name="<%= key %>" content="<%= htmlWebpackPlugin.options.meta[key] %>">
+      <meta name="<%= key %>" content="<%= htmlWebpackPlugin.options.meta[key] %>" />
     <% } %>
   <% } %>
   <title><%= htmlWebpackPlugin.options.title || 'App' %></title>
   <% if (htmlWebpackPlugin.files.favicon) { %>
-    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon %>">
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon %>" />
   <% } %>
   <% if (htmlWebpackPlugin.options.links) { %>
     <% for(let link of htmlWebpackPlugin.options.links) { %>
@@ -28,15 +28,15 @@
           <% } %>
         >
       <% } else { %>
-        <link href="<%= link %>" rel="stylesheet">
+        <link href="<%= link %>" rel="stylesheet" />
       <% } %>
     <% } %>
   <% } %>
   <% for (let css in htmlWebpackPlugin.files.css) { %>
-    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
   <% } %>
   <% if (htmlWebpackPlugin.options.baseHref) { %>
-    <base href="<%= htmlWebpackPlugin.options.baseHref %>"/>
+    <base href="<%= htmlWebpackPlugin.options.baseHref %>" />
   <% } %>
 </head>
 <body>

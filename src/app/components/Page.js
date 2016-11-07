@@ -7,10 +7,10 @@ function Page({ children }) {
     children: T.element
   }
   return (
-    <div styleName="Page">
+    <div styleName="Page column static">
       {children}
     </div>
   )
 }
 
-export default css(stylesheet)(Page)
+export default css(stylesheet, { allowMultiple: true })(Page)

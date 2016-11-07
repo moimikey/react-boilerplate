@@ -1,10 +1,10 @@
 # ⚛ web app boilerplate [![Build Status][travis-image]][travis-url] [![License][git-license-image]][git-license-url] [![Donate Beer][beerpay-image]][beerpay-url]
-My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's, but better!
+My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's, but better! (cause it gets _distributed_)
 
 ## Why use this boilerplate?
 Everyone has their own opinion on how they want their code base to look.
-There are hundreds of boilerplates for a React and Redux applications.
-Especially when they're architected to solve specific problems like async
+There are hundreds of boilerplates for a React and/or Redux application —
+especially when they're architected to solve specific problems like async
 control flow or isolation of "side-effects."
 
 The reason for this boilerplate was to not only address various concerns
@@ -16,7 +16,7 @@ dockerized micro architectures and beyond.
 
 Beyond initially-necessary parts of the app are commented out.
 
-## Goals / TODO
+## Goals / `TODO`
 - [ ] Distributed configuration and caching with `redis`
 - [ ] Realtime `redux` communication over `WebSockets`
 
@@ -32,6 +32,9 @@ Beyond initially-necessary parts of the app are commented out.
 * State persistance and auto rehydration with `redux-persist`
   * Paired with `redux-persist-crosstab` for unified sessions
 
+## Docs
+* [FontAwesome Usage](./docs/fontawesome.md)
+
 ## Install
 
 ### Local
@@ -40,7 +43,7 @@ npm install
 npm start
 ```
 
-### Docker
+### Cluster (with Docker)
 ```
 docker-compose build
 docker-compose up
@@ -59,9 +62,9 @@ generated and passed to `react-router`.
 
 ```js
 pages/
-  counter.js  // localhost/counter
-  home.js     // localhost/home
-  e404.js     // catch-all for 404 errors (the letter 'e' and a 3 digit status code)
+  counter.js  // http://localhost/counter
+  home.js     // http://localhost/home
+  404.js      // any non-route
 ```
 
 Routes in this case are dynamically generated using the filename. In the event
@@ -72,10 +75,10 @@ contains sub-routes.
 pages/
   counter.js
   home.js
-  e404.js
+  404.js
   profile/
-    index.js
-    edit.js
+    index.js  // http://localhost/profile
+    edit.js   // http://localhost/profile/edit
 ```
 
 A `page` is simply a container for `modules`, which may consist of more
@@ -99,21 +102,45 @@ modules/
     reducers.js    // local reducers
 ```
 
-> when a `module` contains a `reducers.js` file, the default export is
-> automatically added as a globally available reducer (`rootReducers`)
+When a `module` contains a `reducers.js` file, the default export is
+automatically added as a globally available reducer (`rootReducers`)
 
-> the state slice that the reducer will automatically bind itself to, is
-> equivilent to the name of the module, but lowercase. therefore, the
-> `Counter` component has access to `state.counter` while the `FourOhFour`
-> component is mapped to `state.fourohfour`
+The state slice that the reducer will automatically bind itself to, is
+equivilent to the name of the module, but lowercase. Therefore, the
+`Counter` component has access to `state.counter` while the `FourOhFour`
+component is mapped to `state.fourohfour`
 
-> for easy creation of `modules`, simply dupe the `Counter` module.
+Use `Counter` as a boilerplate module.
+
+## Data Flow
+
+### Nanomsg
+
+TODO
+
+### Redux
+
+#### Actions
+
+Special meta properties can be used to do different things:
+
+```
+meta: {
+  debounce: 'simple' // debounce the action for 300ms
+}
+```
+
+```
+meta: {
+
+}
+```
 
 ## Stack
 
 ### Frontend
 * react
-* redux w/ async routing & code splitting (webpack)
+* redux w/ async routing & code splitting
 * socket.io-client
 
 ### Backend

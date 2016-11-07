@@ -1,5 +1,24 @@
+@import './lost.css';
+
+/* alignment */
+
+.center {
+  lost-align: center;
+}
+
+/* grid / rows */
+
+.static {
+  lost-center: 980px;
+}
+
 .row {
-  lost-utility: clearfix;
+  lost-flex-container: row;
+}
+
+.column {
+  height: 100%;
+  lost-flex-container: column;
 }
 
 .quarter {
