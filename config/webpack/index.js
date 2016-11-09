@@ -19,18 +19,21 @@ module.exports = ({
   const isDev = env === 'development'
   const isProd = env === 'production'
   return {
-    entry: [
-      ...isDev && [
-        'react-hot-loader/patch',
-        `webpack-dev-server/client?http://${SERVER_HOST}:${SERVER_PORT}`,
-        'webpack/hot/only-dev-server'
-      ],
-      './src/app'
-    ],
+    entry: {
+      app: [
+        ...isDev && [
+          'react-hot-loader/patch',
+          `webpack-dev-server/client?http://${SERVER_HOST}:${SERVER_PORT}`,
+          'webpack/hot/only-dev-server'
+        ],
+        './src/app'
+      ]
+    },
     output: {
+      publicPath: '/',
       path: path.join(__dirname, OPTIONS.destDir),
-      filename: 'bundle.js',
-      chunkFilename: '[id].[chunkhash].js'
+      filename: '[name].[hash].bundle.js',
+      chunkFilename: '[name].[chunkhash].js'
     },
     plugins: [
       new DefinePlugin({
@@ -108,8 +111,7 @@ module.exports = ({
         }
       }, {
         test: /\.json$/,
-        use: ['json'],
-        include: path.join(__dirname, OPTIONS.srcDir)
+        use: ['json']
       }, {
         test: /\.ejs$/,
         use: ['ejs'],

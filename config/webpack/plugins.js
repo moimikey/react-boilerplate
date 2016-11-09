@@ -1,5 +1,5 @@
-// import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
 import path from 'path'
+// import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 import DedupePlugin from 'webpack/lib/optimize/DedupePlugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
@@ -11,6 +11,10 @@ import UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin'
 import VisualizerPlugin from 'webpack-visualizer-plugin'
 import NotifierPlugin from './plugins/TestPlugin'
 const sharedPlugins = [
+  // new CommonsChunkPlugin({
+  //   names: ['common', 'vendor'],
+  //   minChunks: 2
+  // }),
   new HtmlTemplatePlugin({
     appMountId: 'root',
     baseHref: '/',
@@ -40,12 +44,14 @@ const sharedPlugins = [
     },
     mobile: true,
     template: '!!ejs!./index.ejs',
-    unsupportedBrowser: true
+    unsupportedBrowser: true,
     // window: {},
-    // scripts: [{
-    //   src: 'https://cdn.ravenjs.com/3.7.0/raven.min.js',
-    //   crossorigin: 'anonymous'
-    // }]
+    scripts: [/*{
+      src: 'https://cdn.ravenjs.com/3.7.0/raven.min.js',
+      crossorigin: 'anonymous'
+    }*/{
+      src: '/primus/primus.js'
+    }]
   })
 ]
 export const extractTextPluginInstance = new ExtractTextPlugin({
@@ -76,12 +82,6 @@ export default {
   production: [
     ...sharedPlugins,
     extractTextPluginInstance,
-    // new CommonsChunkPlugin({
-    //   name: 'vendor',
-    //   children: true,
-    //   minChunks: 2,
-    //   async: true,
-    // }),
     new DedupePlugin(),
     new UglifyJsPlugin({
       sourceMap: true,

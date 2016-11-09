@@ -6,10 +6,10 @@ import { render, unmountComponentAtNode } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import { persistStore } from 'redux-persist'
-import { asyncSessionStorage } from 'redux-persist/storages'
+// import { persistStore } from 'redux-persist'
+// import { asyncSessionStorage } from 'redux-persist/storages'
 import { AppContainer } from 'react-hot-loader'
-import crosstabSync from 'redux-persist-crosstab'
+// import crosstabSync from 'redux-persist-crosstab'
 // import createExpirationTransform from 'redux-persist-transform-expire'
 // import localforage from 'localforage'
 import { mountResponsive } from 'app/utils/hocs/responsive'
@@ -20,7 +20,7 @@ import Loading from 'app/components/Loading'
 import './global.css'
 
 const rootEl = document.getElementById('root')
-const store = mountResponsive(configureStore(browserHistory))
+export const store = mountResponsive(configureStore(browserHistory))
 const history = syncHistoryWithStore(browserHistory, store)
 
 const beforeStart = () => {
@@ -44,29 +44,29 @@ const beforeStart = () => {
 let start = () => {
   console.log('[APP] Loading...')
   render(<Loading />, rootEl)
-  crosstabSync(persistStore(store, {
-    keyPrefix: 'deadbeef:',
+  // crosstabSync(persistStore(store, {
+    // keyPrefix: 'deadbeef:',
     // transforms: [
     //   createExpirationTransform({
     //     expireKey: 'customExpiresAt'
     //   })
     // ],
-    storage: asyncSessionStorage,
-    blacklist: [
-      'routing'
-    ]
-  }, () => {
+    // storage: asyncSessionStorage,
+    // blacklist: [
+      // 'routing'
+    // ]
+  // }, () => {
     console.log('[APP] Loaded.')
-    console.log('[WPS] Syncing localStorage...')
+    // console.log('[WPS] Syncing localStorage...')
     render(
       <Provider store={store} key="provider">
         <AppContainer>
           <Router history={history} routes={routes} />
         </AppContainer>
-      </Provider>,
-      rootEl
+      </Provider>
+    , rootEl
     )
-  }))
+  // }))
 }
 
 module.hot && module.hot.accept('./pages', () => {

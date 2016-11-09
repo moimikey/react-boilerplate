@@ -7,7 +7,7 @@ function requireAll(requireContext) {
 
 const reducers = requireAll(
   require.context(
-    '../../src/app/modules',
+    '../modules',
     true, // recurse subdirectories
     /^\.\/.*\/reducers\.js$/
   )

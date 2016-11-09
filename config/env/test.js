@@ -1,7 +1,4 @@
-const env = require('./')
+const env = require('./development')
 module.exports = {
-  ...env,
-  debug: true,
-  defaultPort: 3000,
-  defaultHost: 'localhost'
+  ...env
 }

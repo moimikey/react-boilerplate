@@ -1,28 +1,29 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 // import { unstable_batchedUpdates as batchedUpdates } from 'react-dom'
-import { autoRehydrate } from 'redux-persist'
+// import { autoRehydrate } from 'redux-persist'
 import { routerMiddleware } from 'react-router-redux'
+import scuttlebutt from 'redux-scuttlebutt'
 // import { batchedSubscribe } from 'redux-batched-subscribe'
+import { DevTools } from './components/DevTools'
 import middleware from './middleware'
-import { DevTools } from 'app/components/DevTools'
-import { window } from 'app/utils/global'
 
-const devTools = window.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
+const devTools = global.devToolsExtension ? global.devToolsExtension() : DevTools.instrument()
 
 export default function configureStore(history) {
   let finalCreateStore
 
   const sharedEnhancers = compose(
     applyMiddleware(...middleware, routerMiddleware(history)),
+    scuttlebutt(),
     // batchedSubscribe(batchedUpdates),
-    autoRehydrate()
+    // autoRehydrate()
   )
 
-  if (__DEVELOPMENT__) {
-    const { persistState } = require('redux-devtools')
+  if (process.env.NODE_ENV === 'development') {
+    // const { persistState } = require('redux-devtools')
     finalCreateStore = compose(
       sharedEnhancers,
-      persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
+      // persistState(global.location && global.location.href.match(/[?&]debug_session=([^&]+)\b/)),
       devTools
     )(createStore)
   } else {

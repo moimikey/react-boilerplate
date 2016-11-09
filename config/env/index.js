@@ -5,5 +5,5 @@ module.exports = {
   debug: false,
   srcDir: 'src/app',
   rootDir: 'src',
-  destDir: 'dist',
+  destDir: 'dist'
 }

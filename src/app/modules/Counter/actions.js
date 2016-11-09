@@ -3,6 +3,7 @@ export const INCREMENT = 'INCREMENT'
 export const { increment } = createActions({
   [INCREMENT]: amount => ({ amount })
 })
+
 // console.log(createActions({
 //   ACTION_1: () => {
 //   },

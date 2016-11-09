@@ -2,7 +2,8 @@
   "presets": [
     ["latest", {
       "es2015": {
-        "spec": true
+        "spec": true,
+        "strict": false
       }
     }],
     "stage-0",
@@ -13,7 +14,6 @@
     "transform-decorators-legacy",
     "transform-decorators",
     "transform-react-constant-elements",
-    "transform-react-remove-prop-types",
     "transform-react-pure-class-to-function"
 
   ],
@@ -23,7 +23,11 @@
         "react-hot-loader/babel"
       ]
     },
-    "production": {},
+    "production": {
+      "plugins": [
+        "transform-react-remove-prop-types"
+      ]
+    },
     "test": {}
   }
 }
