@@ -9,4 +9,4 @@ app.use(function *() {
   const body = yield parse(this)
   console.log(body)
 })
-app.use(serve('./dist', { gzip: false }))
+app.use(serve('./dist', { gzip: true }))

@@ -102,7 +102,7 @@ module.exports = ({
         loader: 'eslint'
       }, {
         test: /\.js$/,
-        use: ['babel'/*, 'webpack-module-hot-accept'*/],
+        use: ['babel', 'webpack-module-hot-accept'],
         include: path.join(__dirname, OPTIONS.srcDir),
         options: {
           happy: {

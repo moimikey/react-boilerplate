@@ -1,4 +1,3 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import { extractTextPluginInstance } from './plugins'
 const sharedLoaders = [
   {
