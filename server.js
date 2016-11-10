@@ -29,7 +29,9 @@ const server = new WebpackDevServer(webpack(config(process.env.NODE_ENV)), {
   },
   setup(app) {
     app.get('/primus/primus.js', (req, res) => {
-      let primus = new Primus(new EventEmitter)
+      let primus = new Primus(new EventEmitter, {
+        transformer: 'uws'
+      })
       res.charset = 'UTF-8'
       res.setHeader('content-type', 'text/javascript')
       res.send(primus.library())
