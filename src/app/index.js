@@ -1,7 +1,7 @@
 /* eslint no-console:0 */
 require('font-awesome-loader')
 import React from 'react'
-import routes from 'routes!./pages'
+import routes from '!!babel!routes!./pages'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'

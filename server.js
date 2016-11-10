@@ -35,7 +35,7 @@ const server = new WebpackDevServer(webpack(config(process.env.NODE_ENV)), {
       res.send(primus.library())
     })
   }
-}).listen(SERVER_PORT, SERVER_HOST, err => {
+}).listen(SERVER_PORT, null, err => {
   if (err) return log(err)
   log('[HTTP] Listening at http://%s:%d/', SERVER_HOST, SERVER_PORT)
 })

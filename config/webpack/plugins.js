@@ -6,10 +6,11 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HappyPackPlugin from 'happypack'
 import HotModuleReplacementPlugin from 'webpack/lib/HotModuleReplacementPlugin'
 import HtmlTemplatePlugin from 'html-webpack-plugin'
+import NotifierPlugin from './plugins/TestPlugin'
 import OnlyIfChangedPlugin from 'only-if-changed-webpack-plugin'
+import OptimizePlugin from 'optimize-js-plugin'
 import UglifyJsPlugin from 'webpack/lib/optimize/UglifyJsPlugin'
 import VisualizerPlugin from 'webpack-visualizer-plugin'
-import NotifierPlugin from './plugins/TestPlugin'
 const sharedPlugins = [
   // new CommonsChunkPlugin({
   //   names: ['common', 'vendor'],
@@ -83,6 +84,7 @@ export default {
     ...sharedPlugins,
     extractTextPluginInstance,
     new DedupePlugin(),
+    new OptimizePlugin(),
     new UglifyJsPlugin({
       sourceMap: true,
       compress: {

@@ -15,7 +15,6 @@
     "transform-decorators",
     "transform-react-constant-elements",
     "transform-react-pure-class-to-function"
-
   ],
   "env": {
     "development": {
@@ -25,7 +24,11 @@
     },
     "production": {
       "plugins": [
-        "transform-react-remove-prop-types"
+        "transform-react-remove-prop-types",
+        ["transform-runtime", {
+          "polyfill": true,
+          "regenerator": true
+        }]
       ]
     },
     "test": {}

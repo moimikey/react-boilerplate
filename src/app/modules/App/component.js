@@ -2,6 +2,7 @@ import React, { Component, PropTypes as T } from 'react'
 import { connect } from 'react-redux'
 import addClasses from 'app/utils/addClasses'
 import CSS from 'react-css-modules'
+import MemoryStats from 'react-memorystats'
 import { getMediaQueries } from 'app/utils/store-queries'
 import Page from 'app/components/Page'
 import PrimaryNavigation from 'app/components/PrimaryNavigation'
@@ -31,6 +32,7 @@ export default class App extends Component {
     })
     return (
       <div className={classNames} styleName="App">
+        <MemoryStats corner="bottomRight" />
         <Page>
           <section styleName="App-menu">
             <PrimaryNavigation />
