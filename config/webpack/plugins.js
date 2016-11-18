@@ -62,7 +62,7 @@ export const extractTextPluginInstance = new ExtractTextPlugin({
 })
 const OnlyIfChangedPluginOptions = {
   rootDir: process.cwd(),
-  devBuild: process.env.NODE_ENV !== 'production'
+  devBuild: process.env.DEVEL
 }
 export default {
   development: [
@@ -73,7 +73,7 @@ export default {
     new HappyPackPlugin({
       loaders: require('./loaders').default['development'][0].use,
       id: 'css',
-      threads: 1
+      threads: 2
     }),
     new OnlyIfChangedPlugin({
       cacheDirectory: path.join(OnlyIfChangedPluginOptions.rootDir, '.webpack'),

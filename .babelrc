@@ -10,11 +10,18 @@
     "react"
   ],
   "plugins": [
-    "ramda",
+    ["transform-runtime", {
+      "helpers": false,
+      "polyfill": false,
+      "regenerator": true
+    }],
+    "syntax-async-functions",
+    "transform-regenerator",
     "transform-decorators-legacy",
     "transform-decorators",
     "transform-react-constant-elements",
-    "transform-react-pure-class-to-function"
+    "ramda"
+
   ],
   "env": {
     "development": {
@@ -24,11 +31,7 @@
     },
     "production": {
       "plugins": [
-        "transform-react-remove-prop-types",
-        ["transform-runtime", {
-          "polyfill": true,
-          "regenerator": true
-        }]
+        "transform-react-remove-prop-types"
       ]
     },
     "test": {}

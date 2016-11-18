@@ -1,7 +1,8 @@
 # ⚛ web app boilerplate [![Build Status][travis-image]][travis-url] [![License][git-license-image]][git-license-url] [![Donate Beer][beerpay-image]][beerpay-url]
-My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's, but better! (cause it gets _distributed_)
+My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's,
+but better! (cause it gets _distributed_)
 
-## Why use this boilerplate?
+## Philosophy • Why use this?
 Everyone has their own opinion on how they want their code base to look.
 There are hundreds of boilerplates for a React and/or Redux application —
 especially when they're architected to solve specific problems like async
@@ -11,26 +12,29 @@ The reason for this boilerplate was to not only address various concerns
 within scalable, production-ready web application, but also the code itself.
 
 This boilerplate is meant to be an intuitive, easy to follow, scalable
-and secure, modern web application boilerplate with options to expand into
-dockerized micro architectures and beyond.
+and secure, modern web application boilerplate, with options to expand into
+containerized micro architectures and beyond. This boilerplate is **not**
+meant to be used completely out of the box. It is loaded with easy-to-shed
+features and should be hacked and tailored to your projects needs.
 
 Beyond initially-necessary parts of the app are commented out.
 
-## Goals / `TODO`
-- [ ] Distributed configuration and caching with `redis`
+## Goals • `TODO`
+- [ ] Distributed 12-factor configuration and caching with `redis`
 - [ ] Realtime `redux` communication over `WebSockets`
+- [ ] Achieve 12-factor
 
 ## Features
 * Easy to read, follow and scale from
 * Containerization with `docker` (optional)
 * Enhanced logging and debugging features
-* Support for ES3-ES8 (full es2017 support with `babel`)
+* Support for ES3-ES8 (full es2017 support with `babel` at `stage-0`)
 * Asynchronous testing with `tap`
   * Paired with `enzyme` for `react`
 * Configurable linting with `eslint`
 * Unidirectional data flow with `redux`
+* Full-duplex WebSockets communication with `uws` and `redux-scuttlebutt`
 * State persistance and auto rehydration with `redux-persist`
-  * Paired with `redux-persist-crosstab` for unified sessions
 
 ## Docs
 * [FontAwesome Usage](./docs/fontawesome.md)
@@ -48,6 +52,18 @@ npm start
 docker-compose build
 docker-compose up
 ```
+
+## Configure
+
+### .env
+
+You'll find an `example.env` file that is nearly identical to `.env`. This
+contains runtime environment variables that can be read by this web application.
+Variables can have values that are variables. An example in `example.env` is the
+Redis configuration: `REDIS_HOST`, `REDIS_PORT` and `REDIS_AUTH`. `REDIS_AUTH`
+is assigned the variable `$REDIS_AUTH` which equates to `process.env.REDIS_AUTH`.
+This becomes a useful way to read sensitive data into configuration without explicitly
+hardcoding it.
 
 ## Usage
 
@@ -114,10 +130,6 @@ Use `Counter` as a boilerplate module.
 
 ## Data Flow
 
-### Nanomsg
-
-TODO
-
 ### Redux
 
 #### Actions
@@ -130,25 +142,26 @@ meta: {
 }
 ```
 
-```
-meta: {
-
-}
-```
-
 ## Stack
 
 ### Frontend
 * react
 * redux w/ async routing & code splitting
-* socket.io-client
+* postcss
+* babel
+* webpack
 
 ### Backend
-* HTTP - koa
-* DB, MQ - redis, nanomsg
+* koa
+* redis
+* scuttlebutt
+* uws
+* nodejs
+
+### Ops
+* docker
 
 #### TODO
-* advanced routing architecture:
 * redux saga
 * distributed config w/ local cache
 
@@ -163,6 +176,20 @@ meta: {
 * test - **test with immediate exit & stats (single run)**
 * test:dev - **test with immediate exit (single run)**
 * test:watch - **test with watcher (for dev)**
+
+## The Road to 12-factor
+- [x] Codebase (version controlled, deployable)
+- [x] Dependencies (explicitly declared and isolated deps)
+- [ ] Config (store config in the environment)
+- [ ] Backing services (treat backing services as attached resources)
+- [ ] Build, release, run (strictly separate build and run stages)
+- [ ] Processes (execute the app as one or more stateless processes)
+- [x] Port binding (export services via port binding)
+- [ ] Concurrency (scale out via the process model)
+- [ ] Disposability (maximize robustness with fast startup and graceful shutdown)
+- [x] Dev/prod parity (keep development, staging, and production as similar as possible)
+- [x] Logs (treat logs as event streams)
+- [x] Admin processes (run admin/management tasks as one-off processes)
 
 ## License
 MIT

@@ -1,6 +1,7 @@
 ._*
 .DS_Store
 .eslintcache
+.env
 .git
 .gitignore
 .happypack/

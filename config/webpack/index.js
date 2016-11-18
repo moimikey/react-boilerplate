@@ -1,4 +1,4 @@
-import * as path from 'path'
+import path from 'path'
 import chalk from 'chalk'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import DefinePlugin from 'webpack/lib/DefinePlugin'
@@ -10,18 +10,22 @@ import plugins from './plugins'
 import loaders from './loaders'
 import postcss from './postcss'
 module.exports = ({
-  __dirname,
+  DEVEL,
   SERVER_HOST,
   SERVER_PORT,
-  OPTIONS
-}, env) => {
-  const NODE_ENV = env
-  const isDev = env === 'development'
-  const isProd = env === 'production'
+  NODE_ENV
+}) => {
+  const OPTIONS = {
+    appDir: path.resolve('src/app/'),
+    srcDir: path.resolve('src/'),
+    rootDir: path.resolve('../..'),
+    distDir: path.resolve('dist/'),
+    configDir: path.resolve('config/')
+  }
   return {
     entry: {
       app: [
-        ...isDev && [
+        ...DEVEL && [
           'react-hot-loader/patch',
           `webpack-dev-server/client?http://${SERVER_HOST}:${SERVER_PORT}`,
           'webpack/hot/only-dev-server'
@@ -31,19 +35,16 @@ module.exports = ({
     },
     output: {
       publicPath: '/',
-      path: path.join(__dirname, OPTIONS.destDir),
+      path: OPTIONS.distDir,
       filename: '[name].[hash].bundle.js',
       chunkFilename: '[name].[chunkhash].js'
     },
     plugins: [
       new DefinePlugin({
-        __DEVELOPMENT__: JSON.stringify(isDev),
-        __PRODUCTION__: JSON.stringify(isProd),
-        __ROOT_DIR__: JSON.stringify(__dirname),
-        __ENV__: JSON.stringify(NODE_ENV),
-        'process.env': {
-          'NODE_ENV': JSON.stringify(NODE_ENV)
-        }
+        __DEVELOPMENT__: JSON.stringify(DEVEL),
+        __ROOT_DIR__: JSON.stringify(OPTIONS.rootDir),
+        __APP_DIR__: JSON.stringify(OPTIONS.appDir),
+        __SRC__DIR__: JSON.stringify(OPTIONS.srcDir)
       }),
       new IgnorePlugin(/^(buffertools)$/),
       new ProgressBarPlugin({
@@ -57,36 +58,35 @@ module.exports = ({
       }),
       new LoaderOptionsPlugin({
         options: {
-          context: __dirname,
-          debug: isDev,
-          minimize: !isDev,
-          devTool: isDev ? 'eval-source-map' : 'hidden-source-map',
+          context: OPTIONS.appDir,
+          debug: DEVEL,
+          devTool: DEVEL ? 'eval-source-map' : 'hidden-source-map',
           postcss
         }
       }),
       new HappyPackPlugin({
         loaders: ['babel'],
         id: 'js',
-        threads: 1
+        threads: 2
       }),
       new NamedModulesPlugin(),
       ...plugins[NODE_ENV]
     ],
     resolve: {
+      alias: {
+        app: OPTIONS.appDir,
+        config: OPTIONS.configDir
+      },
+      modules: [
+        'node_modules',
+        'src'
+      ],
       extensions: [
         '.js',
         '.json',
         '.css',
         '.ejs',
         '.html'
-      ],
-      alias: {
-        app: path.join(__dirname, 'src/app'),
-        config: path.join(__dirname, 'config')
-      },
-      modules: [
-        'node_modules',
-        'src'
       ]
     },
     node: {
@@ -99,11 +99,11 @@ module.exports = ({
       rules: [{
         test: /\.js$/,
         enforce: 'pre',
-        loader: 'eslint'
+        loader: ['babel', 'eslint']
       }, {
         test: /\.js$/,
         use: ['babel', 'webpack-module-hot-accept'],
-        include: path.join(__dirname, OPTIONS.srcDir),
+        include: OPTIONS.srcDir,
         options: {
           happy: {
             id: 'js'
@@ -115,11 +115,11 @@ module.exports = ({
       }, {
         test: /\.ejs$/,
         use: ['ejs'],
-        include: path.join(__dirname, OPTIONS.rootDir)
+        include: OPTIONS.rootDir
       }, {
         test: /\.html$/,
         use: ['html'],
-        include: path.join(__dirname, OPTIONS.rootDir)
+        include: OPTIONS.rootDir
       }, {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: ['url?limit=10000&mimetype=application/font-woff']

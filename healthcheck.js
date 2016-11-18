@@ -1,5 +1,7 @@
 /* eslint-disable */
-require('http').get(`http://vcap.me:3000/health`, res => {
+require('babel-register')
+const { SERVER_HOST, SERVER_PORT } = require('./config').getConfig()
+require('http').get(`http://${SERVER_HOST}:${SERVER_PORT}/health`, res => {
   if (res.statusCode === 200) return process.exit(0)
   return process.exit(1)
 }).on('error', err => {

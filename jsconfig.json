@@ -8,12 +8,9 @@
   "files": [
     "src/",
     "config/",
-    "env.js",
     "healthcheck.js",
     "index.ejs",
-    "server.js",
-    "server.production.js",
-    "webpack.config.babel.js"
+    "server.js"
   ]
 }
 
