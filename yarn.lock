@@ -2842,7 +2842,7 @@ event-stream@~3.3.0:
     stream-combiner "~0.0.4"
     through "~2.3.1"
 
-eventemitter3@1.2.x, eventemitter3@1.x.x:
+eventemitter3@1.x.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
 
@@ -4444,10 +4444,6 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
-load@1.0.x:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/load/-/load-1.0.2.tgz#9df4cddaf9e1dc92074e4bc825cd724b921d3b4a"
-
 loader-runner@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.2.0.tgz#824c1b699c4e7a2b6501b85902d5b862bf45b3fa"
@@ -4971,6 +4967,10 @@ multimatch@^2.0.0, multimatch@^2.1.0:
     array-union "^1.0.1"
     arrify "^1.0.0"
     minimatch "^3.0.0"
+
+multireducer@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/multireducer/-/multireducer-3.0.2.tgz#2301147329b9a2f23c90fd76fe755cc16147aa0c"
 
 mute-stream@0.0.5:
   version "0.0.5"
@@ -6364,23 +6364,7 @@ prettysize@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/prettysize/-/prettysize-0.0.3.tgz#14afff6a645e591a4ddf1c72919c23b4146181a1"
 
-primus@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/primus/-/primus-5.2.2.tgz#34419e62cb7d6072d88c77d513c94411d06a967b"
-  dependencies:
-    access-control "1.0.x"
-    asyncemit "3.0.x"
-    create-server "1.0.x"
-    diagnostics "1.0.x"
-    eventemitter3 "1.2.x"
-    forwarded-for "1.0.x"
-    fusing "1.0.x"
-    load "1.0.x"
-    setheader "0.0.x"
-    ultron "1.0.x"
-    yeast "0.1.x"
-
-primus@6.0.5:
+primus@^6.0.5, primus@6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/primus/-/primus-6.0.5.tgz#53be6e54e46329d5c3623528a99ffab7213b15f3"
   dependencies:
@@ -6557,9 +6541,9 @@ react-a11y@0.3.3:
   dependencies:
     object.assign "^4.0.3"
 
-react-addons-perf@15.4.0:
-  version "15.4.0"
-  resolved "https://registry.yarnpkg.com/react-addons-perf/-/react-addons-perf-15.4.0.tgz#1e8b694677b31eb759289f7ddeb72e9f9215c745"
+react-addons-perf@15.4.1:
+  version "15.4.1"
+  resolved "https://registry.yarnpkg.com/react-addons-perf/-/react-addons-perf-15.4.1.tgz#c6dd5a7011f43cd3222f47b7cb1aebe9d4174cb0"
 
 react-css-modules@4.0.3:
   version "4.0.3"
@@ -6583,9 +6567,9 @@ react-dom@^0.14.0:
   version "0.14.8"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.8.tgz#0f1c547514263f771bd31814a739e5306575069e"
 
-react-dom@15.4.0:
-  version "15.4.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.0.tgz#6a97a69000966570db48c746bc4b7b0ca50d1534"
+react-dom@15.4.1:
+  version "15.4.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.1.tgz#d54c913261aaedb17adc20410d029dcc18a1344a"
   dependencies:
     fbjs "^0.8.1"
     loose-envify "^1.1.0"
@@ -6624,7 +6608,18 @@ react-proxy@^3.0.0-alpha.0:
   dependencies:
     lodash "^4.6.1"
 
-react-redux@4.4.6:
+react-redux-uuid:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-redux-uuid/-/react-redux-uuid-1.1.0.tgz#1e69563ac9762a622facd24706420ce7209401a8"
+  dependencies:
+    lodash "^4.16.6"
+    multireducer "^3.0.2"
+    react "^15.3.2"
+    react-redux "^4.4.5"
+    redux "^3.6.0"
+    uuid "^2.0.3"
+
+react-redux@^4.4.5, react-redux@4.4.6:
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-4.4.6.tgz#4b9d32985307a11096a2dd61561980044fcc6209"
   dependencies:
@@ -6654,9 +6649,9 @@ react@^0.14.0:
     envify "^3.0.0"
     fbjs "^0.6.1"
 
-react@15.4.0:
-  version "15.4.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.4.0.tgz#736c1c7c542e8088127106e1f450b010f86d172b"
+react@^15.3.2, react@15.4.1:
+  version "15.4.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.4.1.tgz#498e918602677a3983cd0fd206dfe700389a0dd6"
   dependencies:
     fbjs "^0.8.4"
     loose-envify "^1.1.0"
@@ -6839,9 +6834,9 @@ reduce-reducers@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/reduce-reducers/-/reduce-reducers-0.1.2.tgz#fa1b4718bc5292a71ddd1e5d839c9bea9770f14b"
 
-redux-actions@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-1.0.1.tgz#5712ad78190fe319b4dfc28c0983e70ae1e8b803"
+redux-actions@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-1.1.0.tgz#df8ec791d9e267544e58a8ba2b72fc5c30afba3b"
   dependencies:
     invariant "^2.2.1"
     lodash "^4.13.1"
@@ -6924,13 +6919,13 @@ redux-saga@0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.13.0.tgz#9294386550deb0d56bc9a1b3c90a613e7ddb6593"
 
-redux-scuttlebutt@0.0.5-alpha.1:
-  version "0.0.5-alpha.1"
-  resolved "https://registry.yarnpkg.com/redux-scuttlebutt/-/redux-scuttlebutt-0.0.5-alpha.1.tgz#7855ee38bcc8605d66a00a6f4abd15895cd7d88a"
+redux-scuttlebutt@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/redux-scuttlebutt/-/redux-scuttlebutt-0.2.0.tgz#8aa9de5ecce008ff3617438e8f85c817c55d60e7"
   dependencies:
     lodash "^4.14.0"
-    primus "^5.2.2"
-    scuttlebutt "github:grrowl/scuttlebutt#32f6702a66ae8e19f25d6b68f81b3b28ebd3c7ee"
+    primus "^6.0.5"
+    scuttlebutt "github:grrowl/scuttlebutt#logical-timestamps"
     ws "^1.1.1"
 
 redux-stack@1.0.1:
@@ -6939,7 +6934,7 @@ redux-stack@1.0.1:
   dependencies:
     ramda "^0.22.1"
 
-redux@3.6.0:
+redux@^3.6.0, redux@3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.6.0.tgz#887c2b3d0b9bd86eca2be70571c27654c19e188d"
   dependencies:
@@ -7200,7 +7195,7 @@ script-loader@0.7.0:
   dependencies:
     raw-loader "~0.5.1"
 
-scuttlebutt@5.6.14, "scuttlebutt@github:grrowl/scuttlebutt#32f6702a66ae8e19f25d6b68f81b3b28ebd3c7ee":
+scuttlebutt@5.6.14, "scuttlebutt@github:grrowl/scuttlebutt#logical-timestamps":
   version "5.6.14"
   resolved "https://registry.yarnpkg.com/scuttlebutt/-/scuttlebutt-5.6.14.tgz#480ad08f1d51da416b6414677f3e848c924e1b0a"
   dependencies:
