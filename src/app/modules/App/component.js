@@ -1,5 +1,6 @@
 import React, { Component, PropTypes as T } from 'react'
 import { connect } from 'react-redux'
+import withRouter from 'react-router/lib/withRouter'
 import addClasses from 'app/utils/addClasses'
 import CSS from 'react-css-modules'
 import MemoryStats from 'react-memorystats'
@@ -12,15 +13,26 @@ import stylesheet from './component.css'
     mq$: getMediaQueries(state)
   })
 )
+@withRouter()
 @CSS(stylesheet, { allowMultiple: true })
 export default class App extends Component {
   static propTypes = {
     children: T.object.isRequired,
-    mq$: T.object
+    mq$: T.object,
+    router: T.function
   }
 
   constructor(props) {
     super(props)
+    this.state = {
+      ready: false
+    }
+    props.router && props.router.router.history.listenBefore(() => {
+      this.setState({ ready: true })
+    })
+    props.router && props.router.router.history.listen(() => {
+      this.setState({ ready: false })
+    })
   }
 
   render() {
@@ -38,7 +50,7 @@ export default class App extends Component {
             <PrimaryNavigation />
           </section>
           <section styleName="App-content">
-            {children}
+            { this.state.ready ? children : 'LOADING' }
           </section>
         </Page>
       </div>

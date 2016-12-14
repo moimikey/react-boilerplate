@@ -15,4 +15,3 @@ export {
   time,
   measure
 } from 'react-decoration'
-export { renderOnHydrate } from './renderOnHydrate.js'

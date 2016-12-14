@@ -2,6 +2,9 @@
 My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's,
 but better! (cause it gets _distributed_)
 
+This repo can also pose as an example for scaling out your project for
+distributed or non-distributed, multi-environment web applications.
+
 ## Philosophy • Why use this?
 Everyone has their own opinion on how they want their code base to look.
 There are hundreds of boilerplates for a React and/or Redux application —
@@ -127,6 +130,15 @@ equivilent to the name of the module, but lowercase. Therefore, the
 component is mapped to `state.fourohfour`
 
 Use `Counter` as a boilerplate module.
+
+### Providers (Working Draft)
+
+`providers` are Higher-Order Components (HOC) for various enhancements
+and are reusable:
+
+i18n: international and local translation
+featureToggle: feature toggling
+
 
 ## Data Flow
 

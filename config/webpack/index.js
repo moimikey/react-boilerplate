@@ -9,6 +9,7 @@ import HappyPackPlugin from 'happypack'
 import plugins from './plugins'
 import loaders from './loaders'
 import postcss from './postcss'
+const root = path.dirname(require.main.filename)
 module.exports = ({
   DEVEL,
   SERVER_HOST,
@@ -18,7 +19,7 @@ module.exports = ({
   const OPTIONS = {
     appDir: path.resolve('src/app/'),
     srcDir: path.resolve('src/'),
-    rootDir: path.resolve('../..'),
+    rootDir: path.resolve(root),
     distDir: path.resolve('dist/'),
     configDir: path.resolve('config/')
   }
