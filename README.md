@@ -29,7 +29,7 @@ Beyond initially-necessary parts of the app are commented out.
 
 ## Features
 * Easy to read, follow and scale from
-* Containerization with `docker` (optional)
+* Containerization with `docker` using `docker-compose` (optional)
 * Enhanced logging and debugging features
 * Support for ES3-ES8 (full es2017 support with `babel` at `stage-0`)
 * Asynchronous testing with `tap`
@@ -37,7 +37,8 @@ Beyond initially-necessary parts of the app are commented out.
 * Configurable linting with `eslint`
 * Unidirectional data flow with `redux`
 * Full-duplex WebSockets communication with `uws` and `redux-scuttlebutt`
-* State persistance and auto rehydration with `redux-persist`
+* Realtime feature toggling
+* Authentication, sessions, uid, gid, groups
 
 ## Docs
 * [FontAwesome Usage](./docs/fontawesome.md)
@@ -72,6 +73,20 @@ hardcoding it.
 
 This web application is driven by `routes`, that are tied to `pages`, which
 consist of `modules`, that are comprised of `components`
+
+### Authentication, Permissioning and Feature Toggling
+
+This is a topic that I felt should be aligned with Unix based systems, whereby an
+account can have a user id `uid`; group id `gid`; and be part of many `groups`.
+The strategy behind this, is to provide a vector for providing features (or `modules`),
+to subsets of accounts. In other words: feature toggling.
+
+| uid | gid | groups | features |
+| moimikey | 0 | admins, superusers | feature_a, feature_b|
+| joe | 15 | users | feature_a, feature_c |
+
+Features can be set on all groups are some groups where accounts are applicable.
+
 
 ### Routes & Pages
 
