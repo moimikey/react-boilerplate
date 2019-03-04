@@ -1,4 +1,7 @@
 # ⚛ web app boilerplate [![Build Status][travis-image]][travis-url] [![License][git-license-image]][git-license-url] [![Donate Beer][beerpay-image]][beerpay-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/moimikey/react-boilerplate.svg)](https://greenkeeper.io/)
+
 My personal react/redux/etc webapp boilerplate and build pipeline like everyone else's,
 but better! (cause it gets _distributed_)
 
